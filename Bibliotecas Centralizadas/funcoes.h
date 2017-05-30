@@ -28,6 +28,7 @@ typedef struct {
     char Ano[5];
     char Editora[31];
     char NumCha[13];
+    int status;// 1 - emprestado 2 - disponivel 3 - reservado
     CDD cdd;
     data DataCD;
     data DataBaixa;
@@ -44,6 +45,7 @@ typedef struct{
     char Num[4];
     data DataPul;
     char NumCha[8];
+    int status;// 1 - emprestado 2 - disponivel 3 - reservado
     Local Localizacao;
     int NumC;
     data DataCD;
@@ -60,8 +62,8 @@ typedef struct{
     };
 } Acervo;
 
-void Cadastro(int type, Acervo *p);
+int Cadastro(int type, Acervo *p);
 
-void Atualizar(int x, Acervo *p);
+int Atualizar(int x, Acervo *p);
 
-void Consultar(char *str,int TConsu,Acervo *p);
+int Consultar(char *str,int TConsu,Acervo *p);
