@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "funcoes.h"
+
 void Cadastro(int type, Acervo *p){
     if(type==1){
         fgets(p->L->ISBN,13,stdin);
