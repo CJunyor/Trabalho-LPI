@@ -23,9 +23,9 @@ void Cadastro (GtkWidget *botao, GtkWidget *widgets[]){
         strncpy((p->L).cdd.Ano,gtk_entry_get_text(GTK_ENTRY(widgets[])),4);
         strncpy((p->L).cdd.Vol,gtk_entry_get_text(GTK_ENTRY(widgets[])),5);
         strncpy((p->L).cdd.Exe,gtk_entry_get_text(GTK_ENTRY(widgets[])),4);
-		strncpy(data, gtk_entry_get_text(GTK_ENTRY(widgets[])), 8);
-		gtk_calendar_get_date(GTK_CALENDAR(widgets[]), &((p->L).DataCD.ano), &((p->L).DataCD.mes), &((p->L).DataCD.dia));
-		strcpy(p->L.FormaA, gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT(widgets[])));
+	strncpy(data, gtk_entry_get_text(GTK_ENTRY(widgets[])), 8);
+	gtk_calendar_get_date(GTK_CALENDAR(widgets[]), &((p->L).DataCD.ano), &((p->L).DataCD.mes), &((p->L).DataCD.dia));
+	strcpy(p->L.FormaA, gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT(widgets[])));
         strcpy(p->L.ExemplarP, gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT(widgets[])));
     }
     else{
@@ -34,14 +34,14 @@ void Cadastro (GtkWidget *botao, GtkWidget *widgets[]){
         strncpy((p->P).Titulo, gtk_entry_get_text(GTK_ENTRY(widgets[])), 50);
         strncpy((p->P).Vol, gtk_entry_get_text(GTK_ENTRY(widgets[])), 3);
         strncpy((p->P).Num, gtk_entry_get_text(GTK_ENTRY(widgets[])), 3);
-		gtk_calendar_get_date(GTK_CALENDAR(widgets[]), &((p->P).DataPul.ano), &((p->P).DataPul.mes), &((p->P).DataPul.dia)
+	gtk_calendar_get_date(GTK_CALENDAR(widgets[]), &((p->P).DataPul.ano), &((p->P).DataPul.mes), &((p->P).DataPul.dia)
         strncpy((p->P).NumCha, gtk_entry_get_text(GTK_ENTRY(widgets[])), 7);
         strncpy((p->P).Localizacao.Secao, gtk_entry_get_text(GTK_ENTRY(widgets[])), 10);
         strncpy((p->P).Localizacao.Estante, gtk_entry_get_text(GTK_ENTRY(widgets[])), 4);
         strncpy((p->P).Localizacao.Prateleira, gtk_entry_get_text(GTK_ENTRY(widgets[])), 4);
         sscanf(gtk_entry_get_text(GTK_ENTRY(widgets[])), "%i", &((p->P).NumC));
-		strncpy(data, gtk_entry_get_text(GTK_ENTRY(widgets[])), 8);
-		gtk_calendar_get_date(GTK_CALENDAR(widgets[]), &((p->P).DataCD.ano), &((p->P).DataCD.mes), &((p->P).DataCD.dia));
+	strncpy(data, gtk_entry_get_text(GTK_ENTRY(widgets[])), 8);
+	gtk_calendar_get_date(GTK_CALENDAR(widgets[]), &((p->P).DataCD.ano), &((p->P).DataCD.mes), &((p->P).DataCD.dia));
         strcpy((p->P.FormaA), gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT(widgets[])));
     }
 
@@ -77,12 +77,12 @@ void Consultar(GtkWidget *botao, GtkWidget *widgets[]){
         if(!strcmp(TConsu,"Nome"){
             rotina_SQL_para_procurar_pelo_nome(nome);
 			
-		}
+	}
         else if(!strcmp(TConsu,"Autor"){
 			rotina_SQL_para_procurar_pelo_nome_autor(nome);		
             
-		}
-		else{
+	}
+	else{
 			gtk_entry_set_text(GTK_ENTRY(widgets[]), "Parametros de Pesquisa Errados");
         }
     }
@@ -90,13 +90,13 @@ void Consultar(GtkWidget *botao, GtkWidget *widgets[]){
         if(!strcmp(TConsu,"Nome"){
             rotina_SQL_para_procurar_pelo_nome(nome);
 			
-		}
+	}
         else if(!strcmp(TConsu,"Titulo"){
 			rotina_SQL_para_procurar_pelo_nome_titulo(nome);	
             
-		}
-		else{
-			gtk_entry_set_text(GTK_ENTRY(widgets[]), "Parametros de Pesquisa Errados");
-        }
 	}
+	else{
+		gtk_entry_set_text(GTK_ENTRY(widgets[]), "Parametros de Pesquisa Errados");
+        }
+    }
 }
