@@ -26,11 +26,13 @@ typedef struct {
     char ISBN[14];
     char Nome[51];
     char AutorP[31];
-    char OutrosA[4];
+    char Autor2[31];
+	char Autor3[31];
+	char Autor4[31];
     char Edicao[4];
     char Ano[5];
     char Editora[31];
-    char NumCha[13];
+    char NumCha[22];
     char status[10];// Emprestado, Disponivel e Reservado
     CDD cdd;
     data DataCD;
@@ -41,11 +43,13 @@ typedef struct {
 }Livro;
 
 typedef struct{
-    char ISBN[9];
+    char ISSN[9];
     char Nome[51];
     char Titulo[51];
+	char Editora[31];
     char Vol[4];
     char Num[4];
+	char Ano[5];
     data DataPul;
     char NumCha[8];
     char status[10];// Emprestado, Disponivel e Reservado
@@ -70,3 +74,4 @@ void Cadastro (GtkWidget *, GtkWidget *[]);
 void Atualizar (GtkWidget *, GtkWidget *[]);
 
 void Consultar(GtkWidget *, GtkWidget *[]);
+static int callback(void *, int , char **, char **);
