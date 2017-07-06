@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-cancel</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Calendario.png</property>
+  </object>
+  <object class="GtkImage" id="image6">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Calendario.png</property>
+  </object>
+  <object class="GtkWindow" id="Janela_Cadastro_Usuario">
+    <property name="can_focus">False</property>
+    <property name="window_position">center</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="margin_left">18</property>
+        <property name="margin_right">18</property>
+        <property name="margin_top">18</property>
+        <property name="margin_bottom">18</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="Cadastro_Usuário_Label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="margin_bottom">18</property>
+            <property name="label" translatable="yes">Cadastro de Usuário_________________________________________________________________________________________</property>
+            <property name="justify">fill</property>
+            <attributes>
+              <attribute name="font-desc" value="Candara Bold 16"/>
+              <attribute name="foreground" value="#34346565a4a4"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Nome, Matricula e RG">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">100</property>
+            <property name="margin_top">18</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel" id="Nome_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Nome:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Nome_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="margin_left">1</property>
+                <property name="width_chars">50</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Matrícula_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Matrícula:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Matricula_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="Orgão_Exp_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Orgão Exp:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Orgao_Exp_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">10</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Escola e Data de cadastro ">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">98</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel" id="Escola_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Escola:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="Escola_Combo_Box_Text">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="active">8</property>
+                <property name="has_entry">True</property>
+                <items>
+                  <item translatable="yes">ESCOLA MUNICIPAL ADALGISA SOUZA PINTO</item>
+                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ABRIGO DO SALVADOR</item>
+                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
+                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
+                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
+                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
+                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
+                </items>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">False</property>
+                    <property name="editable">False</property>
+                    <property name="width_chars">45</property>
+                    <property name="text" translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEI</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="RG_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">47</property>
+                <property name="label" translatable="yes">RG:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="RG_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Tipo de Usuário e Data de Exp">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">40</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Tipo de Usuário:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="Tipo_Usuario_Combo_Box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+                <property name="active">2</property>
+                <property name="has_entry">True</property>
+                <items>
+                  <item translatable="yes">Professor</item>
+                  <item translatable="yes">Aluno</item>
+                </items>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">False</property>
+                    <property name="editable">False</property>
+                    <property name="text" translatable="yes">Aluno</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">197</property>
+                <property name="label" translatable="yes">Data de Exp:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Data_Exp_Button">
+                <property name="label" translatable="yes">Data</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="valign">center</property>
+                <property name="image">image5</property>
+                <property name="always_show_image">True</property>
+                <signal name="clicked" handler="on_Data_Button_clicked" object="Calendar_box" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="Calendar_box">
+                <property name="can_focus">False</property>
+                <property name="no_show_all">True</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkCalendar" id="Data_Calendar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="year">2017</property>
+                    <property name="month">5</property>
+                    <property name="day">27</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="OK_Calendar">
+                    <property name="label" translatable="yes">Ok</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="valign">center</property>
+                    <property name="image">image3</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="on_OK_Calendar_clicked" object="Calendar_box" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">57</property>
+                <property name="label" translatable="yes">Data de Cadastro:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Data_Cadastro_Button">
+                <property name="label" translatable="yes">Data</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="valign">center</property>
+                <property name="image">image6</property>
+                <property name="always_show_image">True</property>
+                <signal name="clicked" handler="on_Data_Button_clicked" object="Calendar_box1" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">6</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="Calendar_box1">
+                <property name="can_focus">False</property>
+                <property name="no_show_all">True</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkCalendar" id="Data_Calendar1">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="year">2017</property>
+                    <property name="month">5</property>
+                    <property name="day">27</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="OK_Calendar1">
+                    <property name="label" translatable="yes">Ok</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="valign">center</property>
+                    <property name="image">image4</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="on_OK_Calendar_clicked" object="Calendar_box1" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">7</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Cadastrar_Usuario_Button">
+            <property name="label" translatable="yes">Cadastrar</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">end</property>
+            <property name="valign">center</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="margin_bottom">18</property>
+            <property name="image">image2</property>
+            <property name="always_show_image">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="Linha_Label">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="margin_bottom">36</property>
+            <property name="label" translatable="yes">____________________________________________________________________________________________________________________</property>
+            <attributes>
+              <attribute name="font-desc" value="Calibri Bold 16"/>
+              <attribute name="foreground" value="#34346565a4a4"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Cancelar_Button">
+            <property name="label" translatable="yes">Cancelar</property>
+            <property name="width_request">99</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">end</property>
+            <property name="valign">center</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="image">image1</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Cadastro_Usuario" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">7</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

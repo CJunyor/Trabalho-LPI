@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Livro.png</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-find</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-find</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-quit</property>
+  </object>
+  <object class="GtkImage" id="image5">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">relatorio.png</property>
+  </object>
+  <object class="GtkImage" id="image6">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="halign">center</property>
+    <property name="valign">center</property>
+    <property name="margin_right">2</property>
+    <property name="pixbuf">usuario.png</property>
+  </object>
+  <object class="GtkWindow" id="Janela_Menu">
+    <property name="can_focus">False</property>
+    <property name="window_position">center</property>
+    <child>
+      <object class="GtkBox" id="Principal">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="margin_left">18</property>
+        <property name="margin_right">18</property>
+        <property name="margin_top">18</property>
+        <property name="margin_bottom">18</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel" id="Menu">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="valign">start</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="margin_bottom">40</property>
+            <property name="label" translatable="yes">Menu____________________________</property>
+            <property name="justify">center</property>
+            <attributes>
+              <attribute name="font-desc" value="Candara Bold 16"/>
+              <attribute name="foreground" value="#34346565a4a4"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Cadastrar_Livro_Buttton">
+            <property name="label">Cadastrar Livro</property>
+            <property name="width_request">179</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_bottom">6</property>
+            <property name="hexpand">False</property>
+            <property name="image">image1</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_Cadastrar_Livro_Buttton_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Cadastrar_Usuario_Button">
+            <property name="label" translatable="yes">Cadastrar Usuário</property>
+            <property name="width_request">179</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_bottom">6</property>
+            <property name="image">image6</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_Cadastrar_Usuario_Button_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Consultar_Acervo_Button">
+            <property name="label">Consulta ao Acervo</property>
+            <property name="width_request">179</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_bottom">6</property>
+            <property name="image">image2</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_Consultar_Acervo_Button_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Consultar_Usuarios_Button">
+            <property name="label">Consulta aos Usuários</property>
+            <property name="width_request">179</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_bottom">6</property>
+            <property name="image">image3</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_Consultar_Usuarios_Button_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Relatorios_Button">
+            <property name="label" translatable="yes">Relatórios</property>
+            <property name="width_request">178</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_bottom">6</property>
+            <property name="image">image5</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_Relatorios_Button_clicked" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Sair_Button">
+            <property name="label">Sair</property>
+            <property name="width_request">177</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="image">image4</property>
+            <property name="always_show_image">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel" id="Linha baixo">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">center</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="margin_top">40</property>
+            <property name="label" translatable="yes">_________________________________</property>
+            <attributes>
+              <attribute name="font-desc" value="Candara Bold 16"/>
+              <attribute name="foreground" value="#34346565a4a4"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

@@ -1,0 +1,754 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.20.0 -->
+<interface>
+  <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-cancel</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="pixbuf">Calendario.png</property>
+  </object>
+  <object class="GtkWindow" id="Janela_Cadastro_Livro">
+    <property name="can_focus">False</property>
+    <property name="window_position">center</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="halign">center</property>
+        <property name="margin_right">14</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="margin_top">18</property>
+            <property name="margin_bottom">18</property>
+            <property name="label" translatable="yes">Cadastro de Livro____________________________________________________</property>
+            <attributes>
+              <attribute name="font-desc" value="Candara Bold 16"/>
+              <attribute name="foreground" value="#34346565a4a4"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Nome">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">30</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel" id="Nome_do_Livro_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Nome do Livro:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Nome_do_Livro_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">50</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="ISBN e Número de Chamada">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">85</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel" id="ISBN_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">end</property>
+                <property name="hexpand">False</property>
+                <property name="label" translatable="yes">ISBN:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="ISBN_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">13</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Autor_Principal_box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">31</property>
+            <property name="margin_bottom">6</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Autor Principal:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Autor_Principal_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">30</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">16</property>
+                <property name="label" translatable="yes">Edição:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Edicao_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">5</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Classificação CDD:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Classificacao_Cadastro_Livro_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">7</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Outro Autor 1  e Editora">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">47</property>
+            <property name="margin_bottom">6</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Outro Autor:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Outro_Autor_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">30</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">10</property>
+                <property name="label" translatable="yes">Volume:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Volume_Cadastro_Livro_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">5</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">33</property>
+                <property name="label" translatable="yes">Composição:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Composicao_Cadastro_Livro_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">7</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Outro Autor 2 e Gênero">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">47</property>
+            <property name="margin_bottom">6</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel" id="Outro_Autor_Label">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Outro Autor:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Outro_Autor2_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="valign">center</property>
+                <property name="width_chars">30</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Exemplar:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Exemplar_Cadastro_Livro_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">5</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="margin_left">21</property>
+                <property name="label" translatable="yes">Ano da Edição:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Ano_Edicao_Cadastro_Livro_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">7</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">5</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">5</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Outro Autor 3">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">47</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Outro Autor:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Outro_Autor3_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">30</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">6</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Editora_Box">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">76</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Editora:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Editora_Entry">
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">30</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">7</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Exemplar e Data">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Exemplar de Plateleira:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="Exemplar_Combo_Box_Text">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">center</property>
+                <property name="has_entry">True</property>
+                <items>
+                  <item translatable="yes">Sim</item>
+                  <item translatable="yes">Não</item>
+                </items>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">False</property>
+                    <property name="width_chars">5</property>
+                    <property name="text" translatable="yes">Sim</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Data de Cadastro:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="Data_Cadastro_Livro_Button">
+                <property name="label" translatable="yes">Data</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">True</property>
+                <property name="valign">center</property>
+                <property name="image">image4</property>
+                <property name="always_show_image">True</property>
+                <signal name="clicked" handler="on_Data_Button_clicked" object="Calendar_box" swapped="no"/>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">3</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkBox" id="Calendar_box">
+                <property name="can_focus">False</property>
+                <property name="no_show_all">True</property>
+                <property name="spacing">12</property>
+                <child>
+                  <object class="GtkCalendar" id="Data_Calendar">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="year">2017</property>
+                    <property name="month">5</property>
+                    <property name="day">27</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="OK_Calendar">
+                    <property name="label" translatable="yes">Ok</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="valign">center</property>
+                    <property name="image">image2</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="on_OK_Calendar_clicked" object="Calendar_box" swapped="no"/>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">4</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">8</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Forma_de_Aquisição">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_left">16</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="label" translatable="yes">Forma de Aquisição:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="Forma_Aquisicao_Cadastro_Livro_CBT">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="has_entry">True</property>
+                <items>
+                  <item translatable="yes">Compra</item>
+                  <item translatable="yes">Doação</item>
+                </items>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">False</property>
+                    <property name="width_chars">8</property>
+                    <property name="text" translatable="yes">Compra</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">9</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="Observação">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="halign">start</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">center</property>
+                <property name="margin_left">66</property>
+                <property name="label" translatable="yes">Observação:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkEntry" id="Observacao_Cadastro_Livro_Entry">
+                <property name="height_request">70</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="width_chars">50</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">10</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Cadastrar_Cadastro_Livro_Button">
+            <property name="label" translatable="yes">Cadastrar</property>
+            <property name="width_request">108</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">end</property>
+            <property name="margin_right">38</property>
+            <property name="margin_top">33</property>
+            <property name="image">image3</property>
+            <property name="always_show_image">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">11</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="margin_bottom">18</property>
+            <property name="label" translatable="yes">__________________________________________________________________</property>
+            <attributes>
+              <attribute name="font-desc" value="Candara Bold 16"/>
+              <attribute name="foreground" value="#34346565a4a4"/>
+            </attributes>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">12</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton" id="Cancelar">
+            <property name="label" translatable="yes">Cancelar</property>
+            <property name="width_request">105</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">end</property>
+            <property name="margin_right">38</property>
+            <property name="margin_bottom">18</property>
+            <property name="image">image1</property>
+            <property name="always_show_image">True</property>
+            <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Cadastro_Livro" swapped="no"/>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">13</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>
