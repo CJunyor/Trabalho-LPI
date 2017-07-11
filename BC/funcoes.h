@@ -88,20 +88,85 @@ typedef struct {
 	char Status[50][11];
 }Nomes_Periodicos;
 
+typedef struct{
+    int n_col;
+    char Matricula[50][15];
+    char Nome[50][55];
+}Matric_Nome;
+
+typedef struct {
+    int n_col;
+    int DiasAtraso[50];
+    char nome[50][100];
+    char DataEmprestimo[50][12];
+	char NumCha[50][20];
+}Atraso;
+
+typedef struct {
+    int n_col;
+	char NumCha[50][20];
+    char Nome[50][100];
+}Reservas;
+
+typedef struct{
+	char NumCha[20];
+    char Nome[51];
+    char Matricula[15];
+    char TipoUsuario[2];
+    char RG[15];
+    char OrgaoExpedidor[15];
+    char CodEscola[10];
+    char DataCadastro[13];
+    char DataExpedicao[13];
+    char DataSuspensao[13];
+    int  Suspenso;
+    int  NumDiasSuspensao;
+    int  NumSuspensoes;
+}Usuarios;
+
+typedef struct{
+    char Senha[21],T;
+}STU;
+
 //void Cadastro (GtkWidget *, GtkWidget *[]);
 
 //void Atualizar (GtkWidget *, GtkWidget *[]);
 
 //void Consultar(GtkWidget *, GtkWidget *[]);
 
+// SQL
+
 static int callback(void *, int , char **, char **);
 
+static int Nomes_dos_Livros(void *, int, char **, char **);
+
+static int Nomes_dos_Periodicos(void *, int , char **, char **);
+
+static int ProcurarSenha(void *, int , char **, char **);
+
+static int PegarString(void *, int , char **, char **);
+
+static int Senha_e_Tipo(void *, int , char **, char **);
+
+static int Contar(void *, int , char **, char **);
+
+static int pegardata(void *, int , char **, char **);
+
+static int Matric_e_Nome(void *, int , char **, char **);
+
+static int Dados_Usuarios(void *, int , char **, char **);
+
+static int Atraso_Funcao(void *, int , char **, char **);
+
+static int Reservas_Funcao(void *, int , char **, char **);
+
+//GTK
 
 void Login(GtkWidget *, GtkWidget *[]);
 
 void on_Sair_Button_clicked(GtkWidget *, GtkWidget *[]);
 
-void on_Cadastrar_Livro_Buttton_clicked(GtkWidget *);
+void on_Cadastrar_Livro_Button_clicked(GtkWidget *);
 
 void on_Proximo_Escolha_Cadastro_Button_clicked(GtkWidget *, GtkWidget *);
 
@@ -109,24 +174,26 @@ void on_gtk_fechar_sub_win(GtkWidget *, GtkWidget *);
 
 void on_Buscar_Livro_Button_clicked(GtkWidget *, GtkBox *);
 
-//void on_Confirmar_Resultado_Consulta_Button_clicked(GtkWidget *, GtkWidget *[]);
+void on_Cadastro_Livro_Button_clicked(GtkWidget *, GtkWidget *[]);
 
-void on_Cadastrar_Livro_Button_clicked(GtkWidget *);
+void on_Cadastro_Periodico_Button_clicked(GtkWidget *, GtkWidget *[]);
 
+void on_Confirmar_Reserva_Button_clicked (GtkWidget *, GtkWidget *[]);
 
-void on_Cadastrar_Cadastro_Livro_Button_clicked (GtkWidget *);
+void on_Confirmar_Emprestimo_Button_clicked (GtkWidget *, GtkWidget *[]);
 
-void on_Confirmar_Reserva_Button_clicked (GtkWidget *);
+void on_Proximo_Usuario_Button_clicked(GtkWidget *, GtkWidget *[]);
 
-void on_Cadastrar_Usuario_Button_clicked(GtkWidget *);
+void on_Confirmar_Cadastro_Usuario_Button_clicked(GtkWidget *, GtkWidget *[]);
 
-void on_gtk_fechar_sub_win(GtkWidget *, GtkWidget *);
-
-void Cadastro_Livro_Periodico(GtkWidget *);
-
-static int Nomes_dos_Livros(void *, int, char **, char **);
-
-static int Nomes_dos_Periodicos(void *, int , char **, char **);
+void on_Consultar_Usuario_Button_clicked(GtkWidget *, GtkWidget *[]);
 
 void on_gtk_fechar_sub_win(GtkWidget *, GtkWidget *);
+
 void on_Consultar_Acervo_Button_clicked(GtkWidget *);
+
+void on_Usuario_Resultado_Button_clicked(GtkWidget *, GtkWidget *);
+
+void on_Devolucao_Menu_Usuario_Button_clicked(GtkWidget *, GtkWidget *[]);
+
+void on_Baixa_Reserva_Menu_Usuario_Button_clicked(GtkWidget *, GtkWidget *[]);

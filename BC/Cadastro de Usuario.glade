@@ -10,14 +10,9 @@
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-apply</property>
+    <property name="stock">gtk-go-forward</property>
   </object>
   <object class="GtkImage" id="image3">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-apply</property>
-  </object>
-  <object class="GtkImage" id="image4">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
     <property name="stock">gtk-apply</property>
@@ -32,9 +27,15 @@
     <property name="can_focus">False</property>
     <property name="pixbuf">Calendario.png</property>
   </object>
+  <object class="GtkImage" id="image7">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
   <object class="GtkWindow" id="Janela_Cadastro_Usuario">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
+    <signal name="destroy" handler="gtk_widget_destroy" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -123,7 +124,7 @@
               <object class="GtkLabel" id="Orgão_Exp_Label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="label" translatable="yes">Orgão Exp:</property>
+                <property name="label" translatable="yes">Orgão Expeditor:</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -132,7 +133,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="Orgao_Exp_Entry">
+              <object class="GtkEntry" id="Orgao_Expeditor_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="width_chars">10</property>
@@ -179,10 +180,6 @@
                   <item translatable="yes">ESCOLA MUNICIPAL ADALGISA SOUZA PINTO</item>
                   <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ABRIGO DO SALVADOR</item>
                   <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
-                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
-                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
-                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
-                  <item translatable="yes">CENTRO MUNICIPAL DE EDUCACAO INFANTIL ALMIR OLIVEIRA</item>
                 </items>
                 <child internal-child="entry">
                   <object class="GtkEntry">
@@ -203,7 +200,7 @@
               <object class="GtkLabel" id="RG_Label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">47</property>
+                <property name="margin_left">38</property>
                 <property name="label" translatable="yes">RG:</property>
               </object>
               <packing>
@@ -234,7 +231,7 @@
           <object class="GtkBox" id="Tipo de Usuário e Data de Exp">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">40</property>
+            <property name="margin_left">44</property>
             <property name="margin_bottom">18</property>
             <property name="spacing">12</property>
             <child>
@@ -275,34 +272,46 @@
                 <property name="position">1</property>
               </packing>
             </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">36</property>
+            <property name="spacing">12</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">197</property>
-                <property name="label" translatable="yes">Data de Exp:</property>
+                <property name="label" translatable="yes">Data de Cadastro:</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">2</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="Data_Exp_Button">
+              <object class="GtkButton" id="Data_Cadastro_Button">
                 <property name="label" translatable="yes">Data</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="valign">center</property>
-                <property name="image">image5</property>
+                <property name="image">image6</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_Data_Button_clicked" object="Calendar_box" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">3</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
@@ -311,7 +320,7 @@
                 <property name="no_show_all">True</property>
                 <property name="spacing">12</property>
                 <child>
-                  <object class="GtkCalendar" id="Data_Calendar">
+                  <object class="GtkCalendar" id="Data_Cadastro_Calendar">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="year">2017</property>
@@ -345,46 +354,60 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">4</property>
+                <property name="position">2</property>
               </packing>
             </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">30</property>
+            <property name="margin_top">18</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
             <child>
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="margin_left">57</property>
-                <property name="label" translatable="yes">Data de Cadastro:</property>
+                <property name="label" translatable="yes">Data de Expedição:</property>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">5</property>
+                <property name="position">0</property>
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="Data_Cadastro_Button">
+              <object class="GtkButton" id="Data_Exp_Button">
                 <property name="label" translatable="yes">Data</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
                 <property name="valign">center</property>
-                <property name="image">image6</property>
+                <property name="image">image5</property>
                 <property name="always_show_image">True</property>
-                <signal name="clicked" handler="on_Data_Button_clicked" object="Calendar_box1" swapped="no"/>
+                <signal name="clicked" handler="on_Data_Button_clicked" object="Calendar_box2" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">6</property>
+                <property name="position">1</property>
               </packing>
             </child>
             <child>
-              <object class="GtkBox" id="Calendar_box1">
+              <object class="GtkBox" id="Calendar_box2">
                 <property name="can_focus">False</property>
                 <property name="no_show_all">True</property>
                 <property name="spacing">12</property>
                 <child>
-                  <object class="GtkCalendar" id="Data_Calendar1">
+                  <object class="GtkCalendar" id="Data_Expedicao_Calendar">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="year">2017</property>
@@ -398,15 +421,15 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="OK_Calendar1">
+                  <object class="GtkButton" id="OK_Calendar2">
                     <property name="label" translatable="yes">Ok</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="valign">center</property>
-                    <property name="image">image4</property>
+                    <property name="image">image7</property>
                     <property name="always_show_image">True</property>
-                    <signal name="clicked" handler="on_OK_Calendar_clicked" object="Calendar_box1" swapped="no"/>
+                    <signal name="clicked" handler="on_OK_Calendar_clicked" object="Calendar_box2" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>
@@ -418,19 +441,20 @@
               <packing>
                 <property name="expand">False</property>
                 <property name="fill">True</property>
-                <property name="position">7</property>
+                <property name="position">2</property>
               </packing>
             </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
+            <property name="position">5</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="Cadastrar_Usuario_Button">
-            <property name="label" translatable="yes">Cadastrar</property>
+          <object class="GtkButton" id="Proximo_Usuario_Button">
+            <property name="label" translatable="yes">Próximo</property>
+            <property name="width_request">99</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
@@ -438,14 +462,14 @@
             <property name="valign">center</property>
             <property name="margin_left">18</property>
             <property name="margin_right">18</property>
-            <property name="margin_bottom">18</property>
             <property name="image">image2</property>
+            <property name="image_position">right</property>
             <property name="always_show_image">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">6</property>
           </packing>
         </child>
         <child>
@@ -454,7 +478,7 @@
             <property name="can_focus">False</property>
             <property name="margin_left">18</property>
             <property name="margin_right">18</property>
-            <property name="margin_bottom">36</property>
+            <property name="margin_bottom">18</property>
             <property name="label" translatable="yes">____________________________________________________________________________________________________________________</property>
             <attributes>
               <attribute name="font-desc" value="Calibri Bold 16"/>
@@ -464,7 +488,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">5</property>
+            <property name="position">7</property>
           </packing>
         </child>
         <child>
@@ -485,7 +509,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">7</property>
+            <property name="position">8</property>
           </packing>
         </child>
       </object>

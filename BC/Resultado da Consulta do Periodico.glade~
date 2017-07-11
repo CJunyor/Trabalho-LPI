@@ -16,44 +16,36 @@
       <column type="gchararray"/>
       <!-- column-name Prateleira -->
       <column type="gchararray"/>
-      <!-- column-name Reservar -->
-      <column type="gboolean"/>
     </columns>
-    <data>
-      <row>
-        <col id="0" translatable="yes">154545</col>
-        <col id="1" translatable="yes">Peão tem que se lasca</col>
-        <col id="2" translatable="yes">Não</col>
-        <col id="3" translatable="yes">Reservado</col>
-        <col id="4" translatable="yes"/>
-        <col id="5" translatable="yes"/>
-        <col id="6">False</col>
-      </row>
-    </data>
+    <signal name="row-has-child-toggled" handler="on_Lista_Periodico_row_has_child_toggled" swapped="no"/>
   </object>
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-apply</property>
+    <property name="stock">gtk-go-forward</property>
   </object>
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-apply</property>
+    <property name="stock">gtk-go-forward</property>
+  </object>
+  <object class="GtkImage" id="image3">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-go-forward</property>
+  </object>
+  <object class="GtkImage" id="image4">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-go-back</property>
   </object>
   <object class="GtkWindow" id="Janela_Resultado_Consulta_Periodico">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
-    <property name="default_width">800</property>
-    <property name="default_height">400</property>
     <child>
       <object class="GtkScrolledWindow">
         <property name="visible">True</property>
         <property name="can_focus">True</property>
-        <property name="margin_left">9</property>
-        <property name="margin_right">13</property>
-        <property name="margin_top">9</property>
-        <property name="margin_bottom">10</property>
         <property name="shadow_type">in</property>
         <property name="propagate_natural_width">True</property>
         <property name="propagate_natural_height">True</property>
@@ -61,6 +53,10 @@
           <object class="GtkViewport">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="margin_left">18</property>
+            <property name="margin_right">18</property>
+            <property name="margin_top">18</property>
+            <property name="margin_bottom">18</property>
             <child>
               <object class="GtkBox">
                 <property name="visible">True</property>
@@ -69,58 +65,54 @@
                 <property name="margin_right">18</property>
                 <property name="margin_top">18</property>
                 <property name="margin_bottom">18</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Resultados da Consulta___________________________________________________________________</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">Resultados da Consulta______________________________________________________</property>
+                    <property name="justify">fill</property>
+                    <property name="track_visited_links">False</property>
                     <attributes>
                       <attribute name="font-desc" value="Candara Bold 16"/>
                       <attribute name="foreground" value="#34346565a4a4"/>
                     </attributes>
                   </object>
                   <packing>
-                    <property name="expand">False</property>
+                    <property name="expand">True</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="Erro">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="margin_left">18</property>
-                    <property name="margin_right">18</property>
-                    <attributes>
-                      <attribute name="font-desc" value="Candara Bold 14"/>
-                    </attributes>
-                  </object>
-                  <packing>
-                    <property name="expand">False</property>
-                    <property name="fill">True</property>
-                    <property name="position">1</property>
-                  </packing>
-                </child>
-                <child>
-                  <object class="GtkTreeView">
+                  <object class="GtkTreeView" id="Periodico_TreeView">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="halign">center</property>
                     <property name="margin_left">20</property>
                     <property name="margin_right">20</property>
+                    <property name="margin_top">18</property>
                     <property name="margin_bottom">18</property>
                     <property name="model">Lista_Periodico</property>
+                    <property name="headers_visible">False</property>
+                    <property name="reorderable">True</property>
+                    <property name="enable_search">False</property>
                     <property name="search_column">1</property>
-                    <property name="hover_expand">True</property>
+                    <property name="fixed_height_mode">True</property>
+                    <property name="show_expanders">False</property>
                     <property name="rubber_banding">True</property>
                     <property name="enable_grid_lines">both</property>
-                    <property name="activate_on_single_click">True</property>
+                    <property name="enable_tree_lines">True</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection"/>
                     </child>
                     <child>
                       <object class="GtkTreeViewColumn" id="Numero de Chamada">
                         <property name="resizable">True</property>
+                        <property name="sizing">fixed</property>
                         <property name="title" translatable="yes">Número de Chamada</property>
                         <property name="clickable">True</property>
                         <property name="reorderable">True</property>
@@ -137,6 +129,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="Nome">
                         <property name="resizable">True</property>
+                        <property name="sizing">fixed</property>
                         <property name="title" translatable="yes">Nome</property>
                         <property name="clickable">True</property>
                         <property name="reorderable">True</property>
@@ -151,6 +144,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="Seção">
                         <property name="resizable">True</property>
+                        <property name="sizing">fixed</property>
                         <property name="title" translatable="yes">Seção</property>
                         <property name="clickable">True</property>
                         <child>
@@ -166,6 +160,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="Estante">
                         <property name="resizable">True</property>
+                        <property name="sizing">fixed</property>
                         <property name="title" translatable="yes">Estante</property>
                         <child>
                           <object class="GtkCellRendererText"/>
@@ -178,6 +173,7 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="Prateleira">
                         <property name="resizable">True</property>
+                        <property name="sizing">fixed</property>
                         <property name="title" translatable="yes">Prateleira</property>
                         <child>
                           <object class="GtkCellRendererText"/>
@@ -190,6 +186,10 @@
                     <child>
                       <object class="GtkTreeViewColumn" id="Status">
                         <property name="resizable">True</property>
+                        <property name="sizing">fixed</property>
+                        <property name="fixed_width">100</property>
+                        <property name="min_width">100</property>
+                        <property name="max_width">200</property>
                         <property name="title" translatable="yes">Status</property>
                         <child>
                           <object class="GtkCellRendererText"/>
@@ -199,34 +199,19 @@
                         </child>
                       </object>
                     </child>
-                    <child>
-                      <object class="GtkTreeViewColumn" id="Reservar">
-                        <property name="resizable">True</property>
-                        <property name="sizing">autosize</property>
-                        <property name="title" translatable="yes">Reservar</property>
-                        <child>
-                          <object class="GtkCellRendererToggle">
-                            <signal name="toggled" handler="on_toggled_periodico" object="Lista_Periodico" swapped="no"/>
-                          </object>
-                          <attributes>
-                            <attribute name="active">6</attribute>
-                          </attributes>
-                        </child>
-                      </object>
-                    </child>
                   </object>
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">False</property>
-                    <property name="position">2</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">20</property>
-                    <property name="margin_right">20</property>
+                    <property name="halign">center</property>
+                    <property name="margin_right">328</property>
                     <property name="spacing">12</property>
                     <child>
                       <object class="GtkLabel">
@@ -241,10 +226,10 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkEntry">
+                      <object class="GtkEntry" id="Numero_Chamada_Resultado_Entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="width_chars">14</property>
+                        <property name="width_chars">30</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -256,57 +241,18 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">3</property>
+                    <property name="position">2</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_left">90</property>
-                    <property name="margin_right">20</property>
+                    <property name="halign">center</property>
+                    <property name="margin_right">420</property>
                     <property name="margin_top">18</property>
+                    <property name="margin_bottom">18</property>
                     <property name="spacing">12</property>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Reservar:</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">Confirmar</property>
-                        <property name="width_request">115</property>
-                        <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
-                        <property name="image">image1</property>
-                        <property name="always_show_image">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">Ou</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">2</property>
-                      </packing>
-                    </child>
                     <child>
                       <object class="GtkLabel">
                         <property name="visible">True</property>
@@ -320,14 +266,15 @@
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkButton">
-                        <property name="label" translatable="yes">Confirmar</property>
-                        <property name="width_request">116</property>
+                      <object class="GtkButton" id="Proximo_Emprestimo_Periodico_Button">
+                        <property name="label" translatable="yes">Próximo</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="image">image2</property>
+                        <property name="image_position">right</property>
                         <property name="always_show_image">True</property>
+                        <signal name="clicked" handler="on_Proximo_Emprestimo_Livro_Button_clicked" object="Numero_Chamada_Resultado_Entry" swapped="no"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -339,23 +286,131 @@
                   <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
+                    <property name="position">3</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="app_paintable">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="margin_right">420</property>
+                    <property name="margin_bottom">18</property>
+                    <property name="spacing">12</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">17</property>
+                        <property name="label" translatable="yes">Reservar:</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="Proximo_Reserva_Periodico_Button">
+                        <property name="label" translatable="yes">Próximo</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="image">image1</property>
+                        <property name="image_position">right</property>
+                        <property name="always_show_image">True</property>
+                        <signal name="clicked" handler="on_Proximo_Reserva_Livro_Button_clicked" object="Numero_Chamada_Resultado_Entry" swapped="no"/>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
                     <property name="position">4</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkBox">
+                    <property name="visible">True</property>
+                    <property name="can_focus">False</property>
+                    <property name="halign">center</property>
+                    <property name="margin_right">420</property>
+                    <property name="spacing">12</property>
+                    <child>
+                      <object class="GtkLabel">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="margin_left">18</property>
+                        <property name="label" translatable="yes">Atualizar:</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkButton" id="Proximo_Atualizar_Periodico_Button">
+                        <property name="label" translatable="yes">Próximo</property>
+                        <property name="visible">True</property>
+                        <property name="can_focus">True</property>
+                        <property name="receives_default">True</property>
+                        <property name="image">image3</property>
+                        <property name="image_position">right</property>
+                        <property name="always_show_image">True</property>
+                      </object>
+                      <packing>
+                        <property name="expand">False</property>
+                        <property name="fill">True</property>
+                        <property name="position">1</property>
+                      </packing>
+                    </child>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">5</property>
                   </packing>
                 </child>
                 <child>
                   <object class="GtkLabel">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">______________________________________________________________________________________</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">_________________________________________________________________________</property>
+                    <property name="justify">fill</property>
                     <attributes>
                       <attribute name="font-desc" value="Candara Bold 16"/>
                       <attribute name="foreground" value="#34346565a4a4"/>
                     </attributes>
                   </object>
                   <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">6</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton">
+                    <property name="label" translatable="yes">Voltar</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="halign">end</property>
+                    <property name="image">image4</property>
+                    <property name="always_show_image">True</property>
+                    <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Resultado_Consulta_Periodico" swapped="no"/>
+                  </object>
+                  <packing>
                     <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">5</property>
+                    <property name="position">7</property>
                   </packing>
                 </child>
               </object>

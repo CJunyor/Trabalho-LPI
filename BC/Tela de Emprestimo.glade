@@ -22,12 +22,17 @@
     <property name="can_focus">False</property>
     <property name="stock">gtk-cancel</property>
   </object>
-  <object class="GtkWindow" id="Janela_Reserva_Livro">
+  <object class="GtkWindow" id="Janela_Emprestimo">
     <property name="can_focus">False</property>
+    <property name="window_position">center</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">18</property>
+        <property name="margin_right">18</property>
+        <property name="margin_top">18</property>
+        <property name="margin_bottom">18</property>
         <property name="orientation">vertical</property>
         <child>
           <object class="GtkLabel">
@@ -35,7 +40,7 @@
             <property name="can_focus">False</property>
             <property name="margin_top">18</property>
             <property name="margin_bottom">18</property>
-            <property name="label" translatable="yes">Reservar____________________________________________________</property>
+            <property name="label" translatable="yes">Empréstimo___________________________________________________</property>
             <attributes>
               <attribute name="font-desc" value="Candara Bold 16"/>
               <attribute name="foreground" value="#34346565a4a4"/>
@@ -51,8 +56,8 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">80</property>
-            <property name="margin_right">80</property>
+            <property name="margin_left">71</property>
+            <property name="margin_right">40</property>
             <property name="margin_bottom">18</property>
             <property name="spacing">12</property>
             <child>
@@ -68,9 +73,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="Numero_Chamada_Reservar_Entry">
+              <object class="GtkEntry" id="Numero_Chamada_Emprestimo_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="editable">False</property>
                 <property name="width_chars">31</property>
               </object>
               <packing>
@@ -90,8 +96,8 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">150</property>
-            <property name="margin_right">80</property>
+            <property name="margin_left">141</property>
+            <property name="margin_right">40</property>
             <property name="spacing">12</property>
             <child>
               <object class="GtkLabel">
@@ -106,7 +112,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="Matricula_Reserva_Entry">
+              <object class="GtkEntry" id="Matricula_Emprestimo_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="valign">center</property>
@@ -129,8 +135,8 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">166</property>
-            <property name="margin_right">80</property>
+            <property name="margin_left">157</property>
+            <property name="margin_right">40</property>
             <property name="margin_top">18</property>
             <property name="margin_bottom">18</property>
             <property name="spacing">12</property>
@@ -150,7 +156,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="Senha_Reserva_Entry">
+              <object class="GtkEntry" id="Senha_Emprestimo_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="visibility">False</property>
@@ -174,8 +180,60 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">177</property>
-            <property name="margin_right">80</property>
+            <property name="margin_left">60</property>
+            <property name="margin_right">40</property>
+            <property name="margin_bottom">18</property>
+            <property name="spacing">12</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="label" translatable="yes">Periódo do Empréstimo:</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkComboBoxText" id="Dias_Emprestimo_Combo_Box">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="has_entry">True</property>
+                <items>
+                  <item translatable="yes">7 dias</item>
+                  <item translatable="yes">14 dias</item>
+                  <item translatable="yes">21 dias</item>
+                </items>
+                <child internal-child="entry">
+                  <object class="GtkEntry">
+                    <property name="can_focus">False</property>
+                    <property name="editable">False</property>
+                    <property name="width_chars">8</property>
+                    <property name="text" translatable="yes">7 dias</property>
+                  </object>
+                </child>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">4</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="margin_left">168</property>
+            <property name="margin_right">40</property>
             <property name="spacing">12</property>
             <child>
               <object class="GtkLabel">
@@ -212,7 +270,7 @@
                 <property name="no_show_all">True</property>
                 <property name="spacing">12</property>
                 <child>
-                  <object class="GtkCalendar" id="Data_Calendar_Reservar">
+                  <object class="GtkCalendar" id="Data_Calendar_Emprestimo">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="year">2017</property>
@@ -253,18 +311,18 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="Confirmar_Reserva_Button">
+          <object class="GtkButton" id="Confirmar_Emprestimo_Button">
             <property name="label" translatable="yes">Confirmar</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="halign">end</property>
-            <property name="margin_left">80</property>
-            <property name="margin_right">80</property>
+            <property name="margin_left">58</property>
+            <property name="margin_right">58</property>
             <property name="margin_top">18</property>
             <property name="image">image2</property>
             <property name="always_show_image">True</property>
@@ -272,7 +330,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">5</property>
+            <property name="position">6</property>
           </packing>
         </child>
         <child>
@@ -280,7 +338,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_bottom">18</property>
-            <property name="label" translatable="yes">___________________________________________________________</property>
+            <property name="label" translatable="yes">_____________________________________________________________</property>
             <attributes>
               <attribute name="font-desc" value="Candara Bold 16"/>
               <attribute name="foreground" value="#34346565a4a4"/>
@@ -289,7 +347,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">6</property>
+            <property name="position">7</property>
           </packing>
         </child>
         <child>
@@ -300,17 +358,17 @@
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="halign">end</property>
-            <property name="margin_left">80</property>
-            <property name="margin_right">80</property>
+            <property name="margin_left">58</property>
+            <property name="margin_right">58</property>
             <property name="margin_bottom">18</property>
             <property name="image">image4</property>
             <property name="always_show_image">True</property>
-            <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Reserva_Livro" swapped="no"/>
+            <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Emprestimo" swapped="no"/>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">7</property>
+            <property name="position">8</property>
           </packing>
         </child>
       </object>

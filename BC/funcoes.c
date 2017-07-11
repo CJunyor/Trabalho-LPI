@@ -6,12 +6,30 @@
 #include "sqlite3.h"
 #include "funcoes.h"
 
-/*
-void on_Buscar_Livro_Button_clicked(GtkWidget *botao, GtkWidget *widgets[]);
-void on_Buscar_Periodico_Button_clicked(GtkWidget *botao, GtkWidget *widgets[]);
-void on_Cadastrar_Usuario_Button_clicked(GtkWidget *botao, GtkWidget *widgets[]);
-*/
+//SELECT DATE('2017-06-15','+10 day');
+//SELECT U.TipoUsuario, S.Senha FROM Usuarios as U Join SenhasUsuarios as S on U.Matricula=S.Matricula where U.Matricula like 2222222222;
+//SELECT Nome, Matricula, TipoUsuario, RG, OrgaoExpedidor, CodEscola,DataCadastro,DataExclusao,DataExpedicao,DataSuspensao,NumDiasSuspensao,NumSuspensoes FROM Usuarios WHERE Nome LIKE '%a%';
+static int pegardata(void *DATE, int argc, char **argv, char **azColName){
+    char *s;
+    s = (char *) DATE;
+    strcpy(s, argv[0]);
+    return 0;
+}
 
+static int Contar(void *k, int argc, char **argv, char **azColName){
+    int *n;
+    n = (int *)k;
+    (*n)++;
+    return 0;
+}
+
+static int Senha_e_Tipo(void *ST, int argc, char **argv, char **azColName){
+    STU *S;
+    S = (STU *) ST;
+    S->T = argv[0][0];
+    strncpy(S->Senha, argv[1], 20);
+    return 0;
+}
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName){
    int i;

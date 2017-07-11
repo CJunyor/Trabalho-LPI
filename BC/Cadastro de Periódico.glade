@@ -50,7 +50,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_bottom">18</property>
-            <property name="label" translatable="yes">Cadastro de Periódico_________________________________________________________________</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">Cadastro de Periódico____________________________________________________________________</property>
             <attributes>
               <attribute name="font-desc" value="Candara Bold 16"/>
               <attribute name="foreground" value="#34346565a4a4"/>
@@ -722,7 +723,8 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="margin_bottom">18</property>
-            <property name="label" translatable="yes">____________________________________________________________________________________</property>
+            <property name="hexpand">True</property>
+            <property name="label" translatable="yes">_______________________________________________________________________________________</property>
             <attributes>
               <attribute name="font-desc" value="Candara Bold 16"/>
               <attribute name="foreground" value="#34346565a4a4"/>

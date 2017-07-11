@@ -2,9 +2,20 @@
 <!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-apply</property>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-cancel</property>
+  </object>
   <object class="GtkWindow" id="Janela_Cadastro">
     <property name="can_focus">False</property>
-    <signal name="destroy" handler="gtk_main_quit" swapped="no"/>
+    <property name="window_position">center</property>
+    <signal name="destroy" handler="gtk_widget_destroy" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -40,49 +51,6 @@
             <property name="valign">center</property>
             <property name="margin_left">18</property>
             <property name="margin_right">18</property>
-            <property name="margin_top">20</property>
-            <property name="margin_bottom">20</property>
-            <property name="spacing">12</property>
-            <child>
-              <object class="GtkLabel" id="Nome_de_Usuário_Label">
-                <property name="visible">True</property>
-                <property name="can_focus">False</property>
-                <property name="halign">end</property>
-                <property name="label" translatable="yes">Nome de usuário:</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">0</property>
-              </packing>
-            </child>
-            <child>
-              <object class="GtkEntry" id="Nome_de_Usuario">
-                <property name="visible">True</property>
-                <property name="can_focus">True</property>
-                <property name="width_chars">20</property>
-              </object>
-              <packing>
-                <property name="expand">False</property>
-                <property name="fill">True</property>
-                <property name="position">1</property>
-              </packing>
-            </child>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="position">1</property>
-          </packing>
-        </child>
-        <child>
-          <object class="GtkBox">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="halign">center</property>
-            <property name="valign">center</property>
-            <property name="margin_left">18</property>
-            <property name="margin_right">18</property>
             <property name="margin_bottom">18</property>
             <property name="orientation">vertical</property>
             <property name="spacing">6</property>
@@ -90,6 +58,7 @@
               <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="margin_top">18</property>
                 <property name="spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="Senha_Label">
@@ -106,7 +75,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="Senha">
+                  <object class="GtkEntry" id="Senha_Entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="width_chars">20</property>
@@ -143,7 +112,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkEntry" id="Confirmar_Senha">
+                  <object class="GtkEntry" id="Confirmar_Senha_Entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="width_chars">20</property>
@@ -165,25 +134,44 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
-            <property name="position">2</property>
+            <property name="position">1</property>
           </packing>
         </child>
         <child>
-          <object class="GtkButton" id="Cadastrar">
+          <object class="GtkButton" id="Confirmar_Cadastro_Usuario_Button">
             <property name="label" translatable="yes">Cadastrar</property>
-            <property name="width_request">178</property>
+            <property name="width_request">156</property>
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <property name="receives_default">True</property>
             <property name="halign">center</property>
             <property name="valign">center</property>
-            <property name="margin_left">18</property>
-            <property name="margin_right">18</property>
+            <property name="margin_left">114</property>
             <property name="margin_bottom">18</property>
+            <property name="image">image1</property>
+            <property name="always_show_image">True</property>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">False</property>
+            <property name="position">2</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkButton">
+            <property name="label" translatable="yes">Cancelar</property>
+            <property name="width_request">154</property>
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="halign">center</property>
+            <property name="margin_left">114</property>
+            <property name="image">image2</property>
+            <property name="always_show_image">True</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
             <property name="position">3</property>
           </packing>
         </child>

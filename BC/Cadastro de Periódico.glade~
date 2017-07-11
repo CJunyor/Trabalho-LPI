@@ -428,7 +428,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="Numero_Copias_Cadastro_Periodico_Entry1">
+              <object class="GtkEntry" id="Numero_Copias_Cadastro_Periodico_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="width_chars">4</property>

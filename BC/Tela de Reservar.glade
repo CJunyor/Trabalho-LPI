@@ -24,6 +24,7 @@
   </object>
   <object class="GtkWindow" id="Janela_Reserva_Livro">
     <property name="can_focus">False</property>
+    <property name="window_position">center</property>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>
@@ -153,6 +154,8 @@
               <object class="GtkEntry" id="Senha_Reserva_Entry">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="visibility">False</property>
+                <property name="invisible_char">*</property>
                 <property name="width_chars">16</property>
               </object>
               <packing>
@@ -172,7 +175,7 @@
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="margin_left">175</property>
+            <property name="margin_left">177</property>
             <property name="margin_right">80</property>
             <property name="spacing">12</property>
             <child>
