@@ -1,1 +1,0 @@
-gcc main.c -o teste.exe `pkg-config --cflags --libs gtk+-3.0` sqlite3.o -DSQLITE_THREADSAFE=0
