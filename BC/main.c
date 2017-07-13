@@ -45,6 +45,7 @@ void Login(GtkWidget *Button, GtkWidget *Widgets_Main[]){
 	gchar login[20], senha[20];
 	strcpy(login, gtk_entry_get_text(GTK_ENTRY(Widgets_Main[1])));
 	strcpy(senha, gtk_entry_get_text(GTK_ENTRY(Widgets_Main[2])));
+	//Login=Teste Senha=123456
 	if(!strcmp(login, "Teste")&& !strcmp(senha, "123456")){
 		gtk_label_set_text(GTK_LABEL(Widgets_Main[4]), "");
 		builder = gtk_builder_new();
