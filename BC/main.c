@@ -185,8 +185,8 @@ void on_Cadastro_Livro_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_Cada
 	GtkWidget *dialog;
 	p=(Acervo *) malloc(sizeof(Acervo));
 	
-	strncpy((p->L).Nome,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[1])),50);
-	strncpy((p->L).ISBN,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[2])),13);
+	strncpy((p->L).Nome,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[1])),99);
+	strncpy((p->L).ISBN,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[2])),19);
     strncpy((p->L).AutorP,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[3])),30);
 	strncpy((p->L).Autor2,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[4])),30);
 	strncpy((p->L).Autor3,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[5])),30);
@@ -290,8 +290,6 @@ void on_Cadastro_Livro_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_Cada
 		}
 	}
     sqlite3_close(db);
-	
-	
 }
 
 void on_Cadastro_Periodico_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_Cadastro[]){
@@ -303,11 +301,11 @@ void on_Cadastro_Periodico_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_
 	GtkWidget *dialog;
 	p=(Acervo *) malloc(sizeof(Acervo));
 	
-	strncpy((p->P).Nome, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[1])), 50);
-	strncpy((p->P).Titulo, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[2])), 50);
+	strncpy((p->P).Nome, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[1])), 99);
+	strncpy((p->P).Titulo, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[2])), 99);
 	strncpy((p->P).ISSN, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[3])), 8);
 	strncpy((p->P).Vol, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[4])), 3);
-	strncpy((p->P).NumCha, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[5])), 7);
+	strncpy((p->P).NumCha, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[5])), 19);
 	strncpy((p->P).Editora, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[6])), 30);
 	sscanf(gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[7])), "%i", &(p->P).NumC);
 	strncpy((p->P).Localizacao.Secao, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[8])), 10);
@@ -459,7 +457,6 @@ G_MODULE_EXPORT void on_Buscar_Livro_Button_clicked(GtkWidget *Button, GtkBox *b
 	    if( rc != SQLITE_OK ){
 			sprintf(erro, "SQL error: %s\n", zErrMsg);
 			sqlite3_free(zErrMsg);
-			//return 0;
 	    }else{ 
 			gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(Widgets_Resultado[4]),TRUE);
 			if(p->n_col==0){
@@ -697,6 +694,7 @@ G_MODULE_EXPORT void on_Proximo_Reserva_Livro_Button_clicked(GtkWidget *Button, 
 				sqlite3_close(db);
 			}
 		}
+		sqlite3_close(db);
 	}
 	
 }
@@ -768,9 +766,8 @@ void on_Confirmar_Reserva_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_R
 				gtk_widget_destroy(dialog); 
 			}
 		}
+		sqlite3_close(db);
 	}	
-    
-	sqlite3_close(db);
 }
 
 G_MODULE_EXPORT void on_Proximo_Emprestimo_Livro_Button_clicked(GtkWidget *Button, GtkEntry *Entrada){
@@ -841,6 +838,7 @@ G_MODULE_EXPORT void on_Proximo_Emprestimo_Livro_Button_clicked(GtkWidget *Butto
 				sqlite3_close(db);
 			}
 		}
+		sqlite3_close(db);
 	}
 }
 
@@ -952,9 +950,234 @@ void on_Confirmar_Emprestimo_Button_clicked(GtkWidget *Button, GtkWidget *Widget
 			gtk_dialog_run(GTK_DIALOG(dialog));
 			gtk_widget_destroy(dialog); 
 		}
+		sqlite3_close(db);
 	}	
-    
-	sqlite3_close(db);
+}
+
+G_MODULE_EXPORT void on_Atualizar_Livro_Button_clicked(GtkWidget *Button, GtkEntry *Entrada){
+	sqlite3 *db;
+    char *zErrMsg = 0;
+    int  rc, k=0;
+	Acervo *p;
+	char comandosql[500], Erro[100];
+	GtkWidget *dialog;
+	p=(Acervo *) malloc(sizeof(Acervo));
+	static GtkWidget *Widgets_Cadastro[22];
+	GtkBuilder *builder;
+	builder = gtk_builder_new();
+	gtk_builder_add_from_file (builder, "Atualizar Livro.glade", NULL);
+	
+	Widgets_Cadastro[0] = GTK_WIDGET(gtk_builder_get_object(builder, "Janela_Cadastro_Livro"));
+	Widgets_Cadastro[1] = GTK_WIDGET(gtk_builder_get_object(builder, "Nome_do_Livro_Entry"));
+	Widgets_Cadastro[2] = GTK_WIDGET(gtk_builder_get_object(builder, "ISBN_Entry"));
+	Widgets_Cadastro[3] = GTK_WIDGET(gtk_builder_get_object(builder, "Autor_Principal_Entry"));
+	Widgets_Cadastro[4] = GTK_WIDGET(gtk_builder_get_object(builder, "Outro_Autor_Entry"));
+	Widgets_Cadastro[5] = GTK_WIDGET(gtk_builder_get_object(builder, "Outro_Autor2_Entry"));
+	Widgets_Cadastro[6] = GTK_WIDGET(gtk_builder_get_object(builder, "Outro_Autor3_Entry"));
+	Widgets_Cadastro[7] = GTK_WIDGET(gtk_builder_get_object(builder, "Edicao_Entry"));
+	Widgets_Cadastro[8] = GTK_WIDGET(gtk_builder_get_object(builder, "Editora_Entry"));
+	Widgets_Cadastro[9] = GTK_WIDGET(gtk_builder_get_object(builder, "Classificacao_Cadastro_Livro_Entry"));
+	Widgets_Cadastro[10] = GTK_WIDGET(gtk_builder_get_object(builder, "Composicao_Cadastro_Livro_Entry"));
+	Widgets_Cadastro[11] = GTK_WIDGET(gtk_builder_get_object(builder, "Ano_Edicao_Cadastro_Livro_Entry"));
+	Widgets_Cadastro[12] = GTK_WIDGET(gtk_builder_get_object(builder, "Volume_Cadastro_Livro_Entry"));
+	Widgets_Cadastro[13] = GTK_WIDGET(gtk_builder_get_object(builder, "Exemplar_Cadastro_Livro_Entry"));
+	Widgets_Cadastro[14] = GTK_WIDGET(gtk_builder_get_object(builder, "Exemplar_Combo_Box_Text"));
+	Widgets_Cadastro[15] = GTK_WIDGET(gtk_builder_get_object(builder, "Forma_Aquisicao_Cadastro_Livro_CBT"));
+	Widgets_Cadastro[16] = GTK_WIDGET(gtk_builder_get_object(builder, "Data_Calendar"));
+	Widgets_Cadastro[17] = GTK_WIDGET(gtk_builder_get_object(builder, "Cadastrar_Cadastro_Livro_Button"));
+	Widgets_Cadastro[18] = GTK_WIDGET(gtk_builder_get_object(builder, "Num_Chamada_Entry"));
+	Widgets_Cadastro[19] = GTK_WIDGET(gtk_builder_get_object(builder, "Atualizar_CBT_Entry"));
+	Widgets_Cadastro[20] = GTK_WIDGET(gtk_builder_get_object(builder, "Forma_Aquisicao_CBT_Entry"));
+	Widgets_Cadastro[21] = GTK_WIDGET(gtk_builder_get_object(builder, "Excluir_Livro_Button"));
+		
+	
+	g_signal_connect(Widgets_Cadastro[0], "destroy", G_CALLBACK (on_gtk_fechar_sub_win), Widgets_Cadastro[0]);
+	g_signal_connect(Widgets_Cadastro[17], "clicked", G_CALLBACK (on_Confirmar_Atualizacao_Livro_Button_clicked), Widgets_Cadastro);
+	g_signal_connect(Widgets_Cadastro[21], "clicked", G_CALLBACK (on_Exclusao_Livro_Button_clicked), Widgets_Cadastro);
+	gtk_builder_connect_signals(builder, NULL);
+  
+    g_object_unref(builder);
+	 
+	gtk_widget_show_all(Widgets_Cadastro[0]);
+		
+	rc = sqlite3_open("sisbib.db3", &db);
+	if( rc ){
+        sprintf(Erro, "SQL error: %s", zErrMsg);
+		dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+		gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+		gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_destroy(dialog); 
+		sqlite3_free(zErrMsg);
+    }else{
+		sprintf(comandosql, "SELECT NumChamada FROM Livros WHERE NumChamada='%s';", gtk_entry_get_text(GTK_ENTRY(Entrada)));
+		rc = sqlite3_exec(db, comandosql, Contar, &k, &zErrMsg);
+		if( rc != SQLITE_OK ){
+				sprintf(Erro, "SQL error: %s", zErrMsg);
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog); 
+				sqlite3_free(zErrMsg);
+		}else{
+			if(k>0){
+				sprintf(comandosql, "SELECT NumChamada, NC_ClassCDD, NC_Composicao, NC_AnoEdicao, NC_Volume, NC_Exemplar, ISBN, Nome, AutorPrincipal, OutroAutor1, OutroAutor2, OutroAutor3, Edicao, Editora,FormaAquisicao, ExemplarPrateleira FROM Livros WHERE NumChamada='%s';", gtk_entry_get_text(GTK_ENTRY(Entrada)));
+				rc = sqlite3_exec(db, comandosql, Atualizar_Funcao, (void *) p, &zErrMsg);
+				if( rc != SQLITE_OK ){
+						sprintf(Erro, "SQL error: %s", zErrMsg);
+						dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+						gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+						gtk_dialog_run(GTK_DIALOG(dialog));
+						gtk_widget_destroy(dialog); 
+						sqlite3_free(zErrMsg);
+				}else{
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[18]), (p->L).NumCha);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[1]),(p->L).Nome);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[2]), (p->L).ISBN);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[3]), (p->L).AutorP);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[4]), (p->L).Autor2);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[5]), (p->L).Autor3);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[6]), (p->L).Autor4);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[7]), (p->L).Edicao);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[8]), (p->L).Editora);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[9]), (p->L).cdd.Class);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[10]), (p->L).cdd.Comp);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[11]), (p->L).cdd.Ano);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[12]), (p->L).cdd.Vol);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[13]), (p->L).cdd.Exe);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[19]), p->L.ExemplarP);
+					gtk_entry_set_text(GTK_ENTRY(Widgets_Cadastro[20]), p->L.FormaA);
+				}		
+			}
+			else{
+				strcpy(Erro, "Numero de chamada invalido!");
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog);
+				gtk_widget_destroy(Widgets_Cadastro[0]);
+			}
+			
+		}
+	}
+    sqlite3_close(db);
+}
+
+void on_Confirmar_Atualizacao_Livro_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_Cadastro[]){
+	sqlite3 *db;
+    char *zErrMsg = 0;
+    int  rc, k=0;
+	Acervo *p;
+	char comandosql[500], Erro[100];
+	GtkWidget *dialog;
+	p=(Acervo *) malloc(sizeof(Acervo));
+	
+	strncpy((p->L).Nome,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[1])),99);
+	strncpy((p->L).ISBN,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[2])),19);
+    strncpy((p->L).AutorP,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[3])),30);
+	strncpy((p->L).Autor2,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[4])),30);
+	strncpy((p->L).Autor3,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[5])),30);
+	strncpy((p->L).Autor4,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[6])),30);
+    strncpy((p->L).Edicao,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[7])),3);
+    strncpy((p->L).Editora,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[8])),30);
+    strncpy((p->L).cdd.Class,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[9])),7);
+    strncpy((p->L).cdd.Comp,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[10])),5);
+    strncpy((p->L).cdd.Ano,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[11])),4);
+    strncpy((p->L).cdd.Vol, gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[12])),5);
+    strncpy((p->L).cdd.Exe,gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[13])),4);
+	gtk_calendar_get_date(GTK_CALENDAR(Widgets_Cadastro[16]), &((p->L).DataCD.ano), &((p->L).DataCD.mes), &((p->L).DataCD.dia));
+	strcpy(p->L.FormaA, gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT(Widgets_Cadastro[15])));
+    strcpy(p->L.ExemplarP, gtk_combo_box_text_get_active_text (GTK_COMBO_BOX_TEXT(Widgets_Cadastro[14])));
+	
+	sprintf((p->L).NumCha ,"%s-%s-%s-%s-%s",(p->L).cdd.Class, (p->L).cdd.Comp, (p->L).cdd.Ano, (p->L).cdd.Vol, (p->L).cdd.Exe);
+	
+	rc = sqlite3_open("sisbib.db3", &db);
+	if( rc ){
+        sprintf(Erro, "SQL error: %s", zErrMsg);
+		dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+		gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+		gtk_dialog_run(GTK_DIALOG(dialog));
+		gtk_widget_destroy(dialog); 
+		sqlite3_free(zErrMsg);
+    }else{
+		sprintf(comandosql, "SELECT NumChamada FROM Livros WHERE NumChamada='%s';", (p->L).NumCha);
+		rc = sqlite3_exec(db, comandosql, Contar, &k, &zErrMsg);
+		if( rc != SQLITE_OK ){
+				sprintf(Erro, "SQL error: %s", zErrMsg);
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog); 
+				sqlite3_free(zErrMsg);
+		}else{
+			if(k>0){
+				strcpy(comandosql,"UPDATE Livros SET NumChamada='");
+				strcat(comandosql,(p->L).NumCha);
+				strcat(comandosql,"', NC_ClassCDD='");
+				strcat(comandosql,(p->L).cdd.Class);
+				strcat(comandosql,"', NC_Composicao='");
+				strcat(comandosql,(p->L).cdd.Comp);
+				strcat(comandosql,"', NC_AnoEdicao='");
+				strcat(comandosql,(p->L).cdd.Ano);
+				strcat(comandosql,"', NC_Volume='");
+				strcat(comandosql,(p->L).cdd.Vol);
+				strcat(comandosql,"', NC_Exemplar='");
+				strcat(comandosql,(p->L).cdd.Exe);
+				strcat(comandosql,"', ISBN='");
+				strcat(comandosql,(p->L).ISBN);
+				strcat(comandosql,"', Nome='");
+				strcat(comandosql,(p->L).Nome);
+				strcat(comandosql,"',AutorPrincipal='");
+				strcat(comandosql,(p->L).AutorP);
+				strcat(comandosql,"', OutroAutor1='");
+				if(!strcmp((p->L).Autor2,"")) strcat(comandosql,"NULL");
+				else strcat(comandosql,(p->L).Autor2);
+				strcat(comandosql,"', OutroAutor2='");
+				if(!strcmp((p->L).Autor3,"")) strcat(comandosql,"NULL");
+				else strcat(comandosql,(p->L).Autor3);
+				strcat(comandosql,"', OutroAutor3='");
+				if(!strcmp((p->L).Autor4,"")) strcat(comandosql,"NULL");
+				else strcat(comandosql,(p->L).Autor4);
+				strcat(comandosql,"', Edicao='");
+				strcat(comandosql,(p->L).Edicao);
+				strcat(comandosql,"', Editora='");
+				strcat(comandosql,(p->L).Editora);
+				strcat(comandosql,"', DataCadastro='");
+				sprintf(comandosql, "%s%i-%02i-%02i", comandosql,((p->L).DataCD.ano), ((p->L).DataCD.mes)+1, ((p->L).DataCD.dia));
+				strcat(comandosql,"', FormaAquisicao='");
+				strcat(comandosql,(p->L).FormaA);
+				strcat(comandosql,"', ExemplarPrateleira='");
+				strcat(comandosql,(p->L).ExemplarP);
+				strcat(comandosql,"' WHERE NumChamada='");
+				strcat(comandosql, (p->L).NumCha);
+				strcat(comandosql,"';");
+				rc = sqlite3_exec(db, comandosql, callback, 0, &zErrMsg);
+				if( rc != SQLITE_OK ){
+					sprintf(Erro, "SQL error: %s", zErrMsg);
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog); 
+					sqlite3_free(zErrMsg);
+				}else{
+					strcpy(Erro, "Atualizacao efetuada com sucesso!");
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Sucesso!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog);
+					gtk_widget_destroy(Widgets_Cadastro[0]);	
+				}
+			}else{
+				strcpy(Erro, "Esse livro nao está cadastrado!");
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog);
+				gtk_widget_destroy(Widgets_Cadastro[0]);
+			}
+		}
+	}
+    sqlite3_close(db);
+	
 }
 
 G_MODULE_EXPORT void on_Cadastrar_Usuario_Button_clicked(GtkWidget *Button){
@@ -1075,7 +1298,7 @@ void on_Confirmar_Cadastro_Usuario_Button_clicked(GtkWidget *Button, GtkWidget *
 							}else{
 								strcpy(Erro, "Cadastro efetuado com sucesso!");
 								dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Usuario[10]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
-								gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+								gtk_window_set_title(GTK_WINDOW(dialog), "Sucesso!");
 								gtk_dialog_run(GTK_DIALOG(dialog));
 								gtk_widget_destroy(dialog);
 								gtk_widget_destroy(Widgets_Usuario[0]);
@@ -1093,6 +1316,7 @@ void on_Confirmar_Cadastro_Usuario_Button_clicked(GtkWidget *Button, GtkWidget *
 					gtk_widget_destroy(Widgets_Usuario[10]);
 				}
 			}
+			sqlite3_close(db);
 		}
 	}else{
 		strcpy(Erro, "Senhas diferentes!");
@@ -1133,6 +1357,7 @@ void on_Consultar_Usuario_Button_clicked(GtkWidget *Button, GtkWidget *Consultar
 	GtkBuilder *builder;
 	GtkWidget *Usuario[5];
 	GtkTreeIter iter;
+	
 	if(!strcmp(gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(Consultar_Usuario[1])),"Nome")){
 		builder = gtk_builder_new();
 		gtk_builder_add_from_file (builder, "Resultado da Consulta do Usuario.glade", NULL);
@@ -1175,7 +1400,7 @@ void on_Consultar_Usuario_Button_clicked(GtkWidget *Button, GtkWidget *Consultar
 			}else{
 				gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(Usuario[4]),TRUE);
 				if(x.n_col==0){
-					sprintf(Erro, "Nenhum Aluno foi encontrado com esse nome: %s", gtk_entry_get_text(GTK_ENTRY(Consultar_Usuario[2])) );
+					sprintf(Erro, "Nenhum Aluno foi encontrado com essa matricula: %s", gtk_entry_get_text(GTK_ENTRY(Consultar_Usuario[2])) );
 					dialog = gtk_message_dialog_new(GTK_WINDOW(Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
 					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
 					gtk_dialog_run(GTK_DIALOG(dialog));
@@ -1191,11 +1416,42 @@ void on_Consultar_Usuario_Button_clicked(GtkWidget *Button, GtkWidget *Consultar
 					}
 				}
 			}
+			sqlite3_close(db);
 		}
 		
 	}else{
-		on_Usuario_Resultado_Button_clicked(Consultar_Usuario[3], Consultar_Usuario[2]);
-		fprintf(stdout,"MeuPau");
+		rc = sqlite3_open("sisbib.db3", &db);
+		if( rc ){
+		  sprintf(Erro, "Erro ao abrir banco de dados: %s", sqlite3_errmsg(db));
+		  dialog = gtk_message_dialog_new(GTK_WINDOW(Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+		  gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+		  gtk_dialog_run(GTK_DIALOG(dialog));
+		  gtk_widget_destroy(dialog); 
+		  sqlite3_close(db);
+		  gtk_widget_destroy(Usuario[0]);
+		}
+		else{
+			sprintf(sql,"SELECT Matricula FROM Usuarios WHERE Matricula='%s';", gtk_entry_get_text(GTK_ENTRY(Consultar_Usuario[2])));
+			rc = sqlite3_exec(db, sql, Contar, (void *) &k, &zErrMsg);
+			if( rc != SQLITE_OK ){
+				sprintf(Erro, "SQL error: %s", zErrMsg);
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Consultar_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog); 
+				sqlite3_free(zErrMsg);
+			}else{
+				if(k>0) on_Usuario_Resultado_Button_clicked(Consultar_Usuario[3], Consultar_Usuario[2]);
+				else{
+					strcpy(Erro, "Matricula nao encontrada!");
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Consultar_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog);	
+				}
+			}
+			sqlite3_close(db);
+		}
 	}
 }
 
@@ -1210,11 +1466,10 @@ void on_Usuario_Resultado_Button_clicked(GtkWidget *Button, GtkWidget *Entrada){
 	Reservas z;
 	GtkWidget *dialog;
 	GtkBuilder *builder;
-	static GtkWidget *Menu_Usuario[23];
+	static GtkWidget *Menu_Usuario[24];
 	GtkTreeIter iter;
 	GtkTreePath *path;
 	char num[3];
-	
 	builder = gtk_builder_new();
 	gtk_builder_add_from_file (builder, "Menu do Usuário.glade", NULL);
 	Menu_Usuario[0] = GTK_WIDGET(gtk_builder_get_object(builder, "Janela_Menu_Usuario"));
@@ -1240,7 +1495,15 @@ void on_Usuario_Resultado_Button_clicked(GtkWidget *Button, GtkWidget *Entrada){
 	Menu_Usuario[20] = GTK_WIDGET(gtk_builder_get_object(builder, "Lista_Menu_Usuario"));
 	Menu_Usuario[21] = GTK_WIDGET(gtk_builder_get_object(builder, "Devolucao_Menu_Usuario_Entry"));
 	Menu_Usuario[22] = GTK_WIDGET(gtk_builder_get_object(builder, "Baixa_Menu_Usuario_Entry"));
-	
+	Menu_Usuario[23] = GTK_WIDGET(gtk_builder_get_object(builder, "Renovar_Emprestimo_Menu_Usuario_Entry"));
+	g_signal_connect(Menu_Usuario[16], "clicked", G_CALLBACK (on_Devolucao_Menu_Usuario_Button_clicked), Menu_Usuario);
+	g_signal_connect(Menu_Usuario[15], "clicked", G_CALLBACK (on_Baixa_Reserva_Menu_Usuario_Button_clicked), Menu_Usuario);
+	g_signal_connect(Menu_Usuario[13], "clicked", G_CALLBACK (Renovar_Emprestimo_Menu_Usuario_Button), Menu_Usuario);
+	gtk_builder_connect_signals(builder, NULL);
+  
+	g_object_unref(builder);
+
+	gtk_widget_show_all(Menu_Usuario[0]);
 	rc = sqlite3_open("sisbib.db3", &db);
 	if( rc ){
 	  sprintf(Erro, "Erro ao abrir banco de dados: %s", sqlite3_errmsg(db));
@@ -1264,7 +1527,7 @@ void on_Usuario_Resultado_Button_clicked(GtkWidget *Button, GtkWidget *Entrada){
 			gtk_widget_destroy(Menu_Usuario[0]);
 		}else{
 			sprintf(sql,"SELECT NomeEscola FROM Escolas WHERE CodEscola='%s';", x.CodEscola);
-			rc = sqlite3_exec(db, sql, PegarString, (void *) Escola, &zErrMsg);
+			rc = sqlite3_exec(db, sql, NomeEscola, (void *) Escola, &zErrMsg);
 			if( rc != SQLITE_OK ){
 				sprintf(Erro, "SQL error: %s", zErrMsg);
 				dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
@@ -1283,19 +1546,17 @@ void on_Usuario_Resultado_Button_clicked(GtkWidget *Button, GtkWidget *Entrada){
 				if(x.Suspenso){ 
 					gtk_entry_set_text(GTK_ENTRY(Menu_Usuario[6]), "Sim");
 					sscanf(x.DataSuspensao, "%i-%i-%i", &DATA.ano, &DATA.mes, &DATA.dia);
-					sprintf(x.DataSuspensao, "%i/%i/%i", DATA.dia, DATA.mes, DATA.ano);
+					sprintf(x.DataSuspensao, "%02i/%02i/%i", DATA.dia, DATA.mes, DATA.ano);
 				}
 				else gtk_entry_set_text(GTK_ENTRY(Menu_Usuario[6]), "Nao");
-				
 				sscanf(x.DataExpedicao, "%i-%i-%i", &DATA.ano, &DATA.mes, &DATA.dia);
-				sprintf(x.DataExpedicao, "%i/%i/%i", DATA.dia, DATA.mes, DATA.ano);
+				sprintf(x.DataExpedicao, "%02i/%02i/%i", DATA.dia, DATA.mes, DATA.ano);
 				gtk_entry_set_text(GTK_ENTRY(Menu_Usuario[7]), x.DataExpedicao);
 				
 				sprintf(numero, "%i", x.NumDiasSuspensao);
 				gtk_entry_set_text(GTK_ENTRY(Menu_Usuario[8]), numero);
-				
 				sscanf(x.DataCadastro, "%i-%i-%i", &DATA.ano, &DATA.mes, &DATA.dia);
-				sprintf(x.DataCadastro, "%i/%i/%i", DATA.dia, DATA.mes, DATA.ano);
+				sprintf(x.DataCadastro, "%02i/%02i/%i", DATA.dia, DATA.mes, DATA.ano);
 				gtk_entry_set_text(GTK_ENTRY(Menu_Usuario[9]), x.DataCadastro);
 				
 				sprintf(numero, "%i", x.NumSuspensoes);
@@ -1315,19 +1576,21 @@ void on_Usuario_Resultado_Button_clicked(GtkWidget *Button, GtkWidget *Entrada){
 					sqlite3_free(zErrMsg);
 					gtk_widget_destroy(Menu_Usuario[0]);
 				}else{
-					gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(Menu_Usuario[19]),TRUE);
-					for(int i=0;i<y.n_col;i++){
-						gtk_list_store_append (GTK_LIST_STORE(Menu_Usuario[20]), &iter);
-						gtk_list_store_set (GTK_LIST_STORE(Menu_Usuario[20]), &iter,
-											0, y.NumCha[i],
-											1, y.nome[i],
-											2, y.DataEmprestimo[i],
-											3, y.DiasAtraso[i],
-											4, y.DiasAtraso[i]*0.10,
-											-1);
+					if(y.n_col>0){
+						gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(Menu_Usuario[19]),TRUE);
+						for(int i=0;i<y.n_col;i++){
+							gtk_list_store_append (GTK_LIST_STORE(Menu_Usuario[20]), &iter);
+							gtk_list_store_set (GTK_LIST_STORE(Menu_Usuario[20]), &iter,
+												0, y.NumCha[i],
+												1, y.nome[i],
+												2, y.DataEmprestimo[i],
+												3, (y.DiasAtraso[i]>0)*y.DiasAtraso[i],
+												4, (y.DiasAtraso[i]>0)*y.DiasAtraso[i]*0.10,
+												-1);
+						}
 					}
 					z.n_col=0;
-					sprintf(sql,"SELECT Livros.NumChamada,Nome FROM Livros JOIN Reservas Where Livros.NumChamada=Reservas.NumChamada AND Reservas.Matricula='%s';", x.Matricula);
+					sprintf(sql,"SELECT Livros.NumChamada, Nome FROM Livros JOIN Reservas Where Livros.NumChamada=Reservas.NumChamada AND Reservas.Matricula='%s';", x.Matricula);
 					rc = sqlite3_exec(db, sql, Reservas_Funcao, (void *) &z, &zErrMsg);
 					if( rc != SQLITE_OK ){
 						sprintf(Erro, "SQL error: %s", zErrMsg);
@@ -1338,79 +1601,379 @@ void on_Usuario_Resultado_Button_clicked(GtkWidget *Button, GtkWidget *Entrada){
 						sqlite3_free(zErrMsg);
 						gtk_widget_destroy(Menu_Usuario[0]);
 					}else{
-						for(int i=0;i<z.n_col;i++){
-							sprintf(num, "%i", i);
-							path = gtk_tree_path_new_from_string (num);
-							gtk_tree_model_get_iter (GTK_TREE_MODEL(GTK_LIST_STORE(Menu_Usuario[20])), &iter, path);
-							gtk_tree_path_free (path);
-							gtk_list_store_set (GTK_LIST_STORE(Menu_Usuario[20]), &iter, 5, z.NumCha[i], 6, z.Nome[i], -1);
+						if(z.n_col>0&&y.n_col>0){
+							gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(Menu_Usuario[19]),TRUE);
+							for(int i=0;i<z.n_col;i++){
+								sprintf(num, "%i", i);
+								path = gtk_tree_path_new_from_string (num);
+								gtk_tree_model_get_iter (GTK_TREE_MODEL(GTK_LIST_STORE(Menu_Usuario[20])), &iter, path);
+								gtk_tree_path_free (path);
+								gtk_list_store_set (GTK_LIST_STORE(Menu_Usuario[20]), &iter, 5, z.NumCha[i], 6, z.Nome[i], -1);
+							}
+						}else if(z.n_col>0){
+							gtk_tree_view_set_headers_visible(GTK_TREE_VIEW(Menu_Usuario[19]),TRUE);
+							for(int i=0;i<z.n_col;i++){
+								gtk_list_store_append (GTK_LIST_STORE(Menu_Usuario[20]), &iter);
+								gtk_list_store_set (GTK_LIST_STORE(Menu_Usuario[20]), &iter, 5, z.NumCha[i], 6, z.Nome[i], -1);
+							}
 						}
 					}
 				}
 			}
 		}
+		sqlite3_close(db);
 	}
-	g_signal_connect(Menu_Usuario[16], "clicked", G_CALLBACK (on_Devolucao_Menu_Usuario_Button_clicked), Menu_Usuario);
-	g_signal_connect(Menu_Usuario[15], "clicked", G_CALLBACK (on_Baixa_Reserva_Menu_Usuario_Button_clicked), Menu_Usuario);
-
-	
-	gtk_builder_connect_signals(builder, NULL);
-  
-	g_object_unref(builder);
-  
-	gtk_widget_show_all(Menu_Usuario[0]);
-
 }
 
 void on_Devolucao_Menu_Usuario_Button_clicked(GtkWidget *Button, GtkWidget *Menu_Usuario[]){
 	sqlite3 *db;
-	int  rc;
+	int  rc, k=0;
 	char *zErrMsg = 0;
 	char sql[500], Erro[100];
 	GtkWidget *dialog;
 	
-	sprintf(sql,"DELETE FROM EmprestimosRenovacoes WHERE NumChamada = '%s';", gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[21])));
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-	if( rc != SQLITE_OK ){
+	rc = sqlite3_open("sisbib.db3", &db);
+	if( rc ){
+	  sprintf(Erro, "Erro ao abrir banco de dados: %s", sqlite3_errmsg(db));
+	  dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+	  gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+	  gtk_dialog_run(GTK_DIALOG(dialog));
+	  gtk_widget_destroy(dialog); 
+	  sqlite3_close(db);
+	  gtk_widget_destroy(Menu_Usuario[0]);
+	}else{
+		sprintf(sql,"SELECT NumChamada FROM EmprestimosRenovacoes WHERE NumChamada = '%s' AND Matricula='%s';", gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[21])), gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[3])));
+		rc = sqlite3_exec(db, sql, Contar, &k, &zErrMsg);
+		if( rc != SQLITE_OK ){
 			sprintf(Erro, "SQL error: %s", zErrMsg);
 			dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
 			gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
 			gtk_dialog_run(GTK_DIALOG(dialog));
 			gtk_widget_destroy(dialog); 
 			sqlite3_free(zErrMsg);
-	}else{
-		strcpy(Erro, "Devolucao efetuada com sucesso!");
-		dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
-		gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
-		gtk_dialog_run(GTK_DIALOG(dialog));
-		gtk_widget_destroy(dialog);
+		}else{
+			if(k>0){
+			sprintf(sql,"DELETE FROM EmprestimosRenovacoes WHERE NumChamada = '%s';", gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[21])));
+			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+				if( rc != SQLITE_OK ){
+					sprintf(Erro, "SQL error: %s", zErrMsg);
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog); 
+					sqlite3_free(zErrMsg);
+				}else{
+					strcpy(Erro, "Devolucao efetuada com sucesso!");
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Sucesso!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog);	
+					gtk_widget_destroy(Menu_Usuario[0]);
+				}
+				
+			}else{
+				strcpy(Erro, "Esse livro nao foi emprestado!");
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog);	
+			}
+		}
+		sqlite3_close(db);
 	}
 	
 }
 
 void on_Baixa_Reserva_Menu_Usuario_Button_clicked(GtkWidget *Button, GtkWidget *Menu_Usuario[]){
 	sqlite3 *db;
-	int  rc;
+	int  rc, k=0;
 	char *zErrMsg = 0;
 	char sql[500], Erro[100];
 	GtkWidget *dialog;
 	
-	sprintf(sql,"DELETE FROM Reservas WHERE NumChamada = '%s';", gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[22])));
-	rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
-	if( rc != SQLITE_OK ){
+	rc = sqlite3_open("sisbib.db3", &db);
+	if( rc ){
+	  sprintf(Erro, "Erro ao abrir banco de dados: %s", sqlite3_errmsg(db));
+	  dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+	  gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+	  gtk_dialog_run(GTK_DIALOG(dialog));
+	  gtk_widget_destroy(dialog); 
+	  sqlite3_close(db);
+	  gtk_widget_destroy(Menu_Usuario[0]);
+	}else{
+		sprintf(sql,"SELECT NumChamada FROM Reservas WHERE NumChamada = '%s' AND Matricula='%s';", gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[21])), gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[3])));
+		rc = sqlite3_exec(db, sql, Contar, &k, &zErrMsg);
+		if( rc != SQLITE_OK ){
 			sprintf(Erro, "SQL error: %s", zErrMsg);
 			dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
 			gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
 			gtk_dialog_run(GTK_DIALOG(dialog));
 			gtk_widget_destroy(dialog); 
 			sqlite3_free(zErrMsg);
-	}else{
-		strcpy(Erro, "Baixa da reserva efetuada com sucesso!");
-		dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
-		gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
-		gtk_dialog_run(GTK_DIALOG(dialog));
-		gtk_widget_destroy(dialog);
+		}else{
+			if(k>0){
+			sprintf(sql,"DELETE FROM Reservas WHERE NumChamada = '%s';", gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[22])));
+			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+				if( rc != SQLITE_OK ){
+					sprintf(Erro, "SQL error: %s", zErrMsg);
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog); 
+					sqlite3_free(zErrMsg);
+				}else{
+					strcpy(Erro, "Baixa da reserva efetuada com sucesso!");
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Sucesso!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog);	
+					gtk_widget_destroy(Menu_Usuario[0]);
+				}
+				
+			}else{
+				strcpy(Erro, "Esse livro nao foi reservado!");
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Menu_Usuario[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog);	
+			}
+		}
+		sqlite3_close(db);
 	}
+}
+
+void Renovar_Emprestimo_Menu_Usuario_Button(GtkWidget *Button, GtkWidget *Menu_Usuario[]){
+	sqlite3 *db;
+	int  rc, k=0;
+	char *zErrMsg = 0;
+	char sql[500], Erro[100];
+	GtkWidget *dialog;
+	GtkBuilder *builder;
+	static GtkWidget *Widgets_Emprestimo[7];
+	
+	builder = gtk_builder_new();
+	gtk_builder_add_from_file (builder, "Tela de Emprestimo.glade", NULL);
+			
+	Widgets_Emprestimo[0] = GTK_WIDGET(gtk_builder_get_object(builder, "Janela_Emprestimo"));
+	Widgets_Emprestimo[1] = GTK_WIDGET(gtk_builder_get_object(builder, "Numero_Chamada_Emprestimo_Entry"));
+	Widgets_Emprestimo[2] = GTK_WIDGET(gtk_builder_get_object(builder, "Matricula_Emprestimo_Entry"));
+	Widgets_Emprestimo[3] = GTK_WIDGET(gtk_builder_get_object(builder, "Senha_Emprestimo_Entry"));
+	Widgets_Emprestimo[4] = GTK_WIDGET(gtk_builder_get_object(builder, "Dias_Emprestimo_Combo_Box"));
+	Widgets_Emprestimo[5] = GTK_WIDGET(gtk_builder_get_object(builder, "Confirmar_Emprestimo_Button"));
+	Widgets_Emprestimo[6] = GTK_WIDGET(gtk_builder_get_object(builder, "Data_Calendar_Emprestimo"));
+	
+	gtk_entry_set_text(GTK_ENTRY(Widgets_Emprestimo[1]), gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[23])));
+	gtk_entry_set_text(GTK_ENTRY(Widgets_Emprestimo[2]), gtk_entry_get_text(GTK_ENTRY(Menu_Usuario[3])));
+
+	g_signal_connect(Widgets_Emprestimo[0], "destroy", G_CALLBACK (on_gtk_fechar_sub_win), Widgets_Emprestimo[0]);
+	g_signal_connect(Widgets_Emprestimo[5], "clicked", G_CALLBACK (on_Confirmar_Renovar_Emprestimo_Button_clicked), Widgets_Emprestimo);
+	gtk_builder_connect_signals(builder, NULL);
+		  
+	g_object_unref(builder);
+		  
+	gtk_widget_show_all(Widgets_Emprestimo[0]);
+	
+	rc = sqlite3_open("sisbib.db3", &db);
+	if( rc ){
+        sprintf(Erro, "Erro ao abrir banco de dados: %s", sqlite3_errmsg(db));
+	    dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+	    gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+	    gtk_dialog_run(GTK_DIALOG(dialog));
+	    gtk_widget_destroy(dialog); 
+	    gtk_widget_destroy(Widgets_Emprestimo[0]);
+	    sqlite3_close(db);
+    }else{
+		sprintf(sql,"SELECT NumChamada FROM Livros WHERE NumChamada='%s' UNION SELECT NumChamada FROM Periodicos WHERE NumChamada='%s' UNION ALL SELECT NumChamada FROM EmprestimosRenovacoes WHERE NumChamada='%s' UNION ALL SELECT NumChamada FROM Reservas WHERE NumChamada='%s'", gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[1])), gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[1])), gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[1])), gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[1])));
+		rc = sqlite3_exec(db, sql, Contar, (void *) &k, &zErrMsg);	
+		if( rc != SQLITE_OK ){
+			sprintf(Erro, "SQL error: %s", zErrMsg);
+			dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+			gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+			gtk_dialog_run(GTK_DIALOG(dialog));
+			gtk_widget_destroy(dialog); 
+			sqlite3_free(zErrMsg);
+		}else{
+			printf("%i\n", k);
+			if(k==0){
+				strcpy(Erro, "Numero de chamada invalido!!");
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog); 
+				gtk_widget_destroy(Widgets_Emprestimo[0]); 
+				sqlite3_close(db);
+			}
+		}
+		sqlite3_close(db);
+	}
+}
+
+void on_Confirmar_Renovar_Emprestimo_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_Emprestimo[]){
+	sqlite3 *db;
+	int  rc, k=0,c;
+	char *zErrMsg = 0;
+	char sql[500], Erro[100], String[4];
+	char DE[15];
+	STU ST;
+	GtkWidget *dialog;
+	data x,y;
+	rc = sqlite3_open("sisbib.db3", &db);
+	if( rc ){
+      sprintf(Erro, "Erro ao abrir banco de dados: %s", sqlite3_errmsg(db));
+	  dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+	  gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+	  gtk_dialog_run(GTK_DIALOG(dialog));
+	  gtk_widget_destroy(dialog); 
+	  gtk_widget_destroy(Widgets_Emprestimo[0]);
+	  sqlite3_close(db);
+    }
+	else{
+		sprintf(sql,"SELECT Renovacao FROM EmprestimosRenovacoes WHERE NumChamada='%s';", gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[1])));
+		rc = sqlite3_exec(db, sql, PegarString, (void *) String, &zErrMsg);
+		if( rc != SQLITE_OK ){
+			sprintf(Erro, "SQL error: %s", zErrMsg);
+			dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+			gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+			gtk_dialog_run(GTK_DIALOG(dialog));
+			gtk_widget_destroy(dialog); 
+			sqlite3_free(zErrMsg);
+		}else{
+			if(!strcmp(String,"1")){	 
+				ST.T='I';
+				sprintf(sql,"SELECT U.TipoUsuario, S.Senha FROM Usuarios AS U JOIN SenhasUsuarios AS S on U.Matricula=S.Matricula WHERE U.Matricula='%s';", gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[2])));
+				rc = sqlite3_exec(db, sql, Senha_e_Tipo, (void *) &ST, &zErrMsg);
+				if( rc != SQLITE_OK ){
+					sprintf(Erro, "SQL error: %s", zErrMsg);
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog); 
+					sqlite3_free(zErrMsg);
+				}else if(!strcmp(ST.Senha, gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[3])))&&ST.T!='I'){
+					k=0;
+					sprintf(sql,"SELECT NumChamada FROM EmprestimosRenovacoes where Matricula='%s';", gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[2])));
+					rc = sqlite3_exec(db, sql, Contar, (void *) &k, &zErrMsg);
+					if( rc != SQLITE_OK ){
+						sprintf(Erro, "SQL error: %s", zErrMsg);
+						dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+						gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+						gtk_dialog_run(GTK_DIALOG(dialog));
+						gtk_widget_destroy(dialog); 
+						sqlite3_free(zErrMsg);
+					}else{
+						gtk_calendar_get_date(GTK_CALENDAR(Widgets_Emprestimo[6]), &x.ano, &x.mes, &x.dia);
+						sscanf(gtk_combo_box_text_get_active_text(GTK_COMBO_BOX_TEXT(Widgets_Emprestimo[4])),"%i dias",&c);
+						sprintf(sql,"SELECT DATE('%i-%02i-%02i','+%i day');", x.ano, x.mes+1, x.dia, c);
+						rc = sqlite3_exec(db, sql, pegardata, (void *) DE, &zErrMsg);
+						if( rc != SQLITE_OK ){
+							sprintf(Erro, "SQL error: %s", zErrMsg);
+							dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+							gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+							gtk_dialog_run(GTK_DIALOG(dialog));
+							gtk_widget_destroy(dialog); 
+							sqlite3_free(zErrMsg);
+						}
+						else{
+							sprintf(sql,"UPDATE EmprestimosRenovacoes SET Matricula='%s', DataEmprestimo='%i-%02i-%02i', NumDiasEmprestimo='%i', Renovacao='0', DataDevolucao='%s' WHERE NumChamada='%s';", 
+																					gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[2])),
+																					x.ano, x.mes+1, x.dia,
+																					c,
+																					DE,
+																					gtk_entry_get_text(GTK_ENTRY(Widgets_Emprestimo[1])));
+							rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+							if( rc != SQLITE_OK ){
+								sprintf(Erro, "SQL error: %s", zErrMsg);
+								dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+								gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+								gtk_dialog_run(GTK_DIALOG(dialog));
+								gtk_widget_destroy(dialog); 
+								sqlite3_free(zErrMsg);
+							}else{
+								strcpy(Erro, "Renovacao feita com sucesso!");
+								dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+								gtk_window_set_title(GTK_WINDOW(dialog), "Sucesso!");
+								gtk_dialog_run(GTK_DIALOG(dialog));
+								gtk_widget_destroy(dialog);
+								gtk_widget_destroy(Widgets_Emprestimo[0]);
+							}
+						}
+					}
+				}else{
+					strcpy(Erro, "Matricula ou Senha Errados!");
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog); 
+				}
+			}else{
+				strcpy(Erro, "Este Livro nao pode mais ser renovado!");
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Emprestimo[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog); 
+			}
+		}
+		sqlite3_close(db);
+	}
+}
+
+void on_Exclusao_Livro_Button_clicked(GtkWidget *Button, GtkWidget *Widgets_Cadastro[]){
+	sqlite3 *db;
+	int  rc, k=0;
+	char *zErrMsg = 0;
+	char sql[500], Erro[100];
+	GtkWidget *dialog;
+	
+	rc = sqlite3_open("sisbib.db3", &db);
+	if( rc ){
+	  sprintf(Erro, "Erro ao abrir banco de dados: %s", sqlite3_errmsg(db));
+	  dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+	  gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+	  gtk_dialog_run(GTK_DIALOG(dialog));
+	  gtk_widget_destroy(dialog); 
+	  sqlite3_close(db);
+	}else{
+		sprintf(sql,"SELECT NumChamada FROM Livros WHERE NumChamada = '%s';", gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[18])));
+		rc = sqlite3_exec(db, sql, Contar, &k, &zErrMsg);
+		if( rc != SQLITE_OK ){
+			sprintf(Erro, "SQL error: %s", zErrMsg);
+			dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+			gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+			gtk_dialog_run(GTK_DIALOG(dialog));
+			gtk_widget_destroy(dialog); 
+			gtk_widget_destroy(Widgets_Cadastro[0]);
+			sqlite3_free(zErrMsg);
+		}else{
+			if(k>0){
+			sprintf(sql,"DELETE FROM Livros WHERE NumChamada = '%s';", gtk_entry_get_text(GTK_ENTRY(Widgets_Cadastro[18])));
+			rc = sqlite3_exec(db, sql, callback, 0, &zErrMsg);
+				if( rc != SQLITE_OK ){
+					sprintf(Erro, "SQL error: %s", zErrMsg);
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog); 
+					sqlite3_free(zErrMsg);
+				}else{
+					strcpy(Erro, "Exclusao efetuada com sucesso!");
+					dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+					gtk_window_set_title(GTK_WINDOW(dialog), "Sucesso!");
+					gtk_dialog_run(GTK_DIALOG(dialog));
+					gtk_widget_destroy(dialog);	
+					gtk_widget_destroy(Widgets_Cadastro[0]);
+				}
+				
+			}else{
+				strcpy(Erro, "Esse livro nao existe!");
+				dialog = gtk_message_dialog_new(GTK_WINDOW(Widgets_Cadastro[0]), GTK_DIALOG_DESTROY_WITH_PARENT, GTK_MESSAGE_INFO, GTK_BUTTONS_NONE, Erro);
+				gtk_window_set_title(GTK_WINDOW(dialog), "Erro!");
+				gtk_dialog_run(GTK_DIALOG(dialog));
+				gtk_widget_destroy(dialog);	
+			}
+		}
+		sqlite3_close(db);
+	}
+	
 }
 
 void on_Relatorios_Button_clicked(GtkWidget *Button){
@@ -1463,6 +2026,27 @@ G_MODULE_EXPORT void on_OK_Calendar_clicked(GtkWidget *Button, GtkWidget *Box_Ca
 	gtk_widget_hide(Box_Calendario);
 }
 
+static int Atualizar_Funcao(void *Dados, int argc, char **argv, char **azColName){
+    Acervo *p=(Acervo *) Dados;
+	strncpy((p->L).NumCha,argv[0] ? argv[0] : "",30);
+    strncpy((p->L).cdd.Class,argv[1] ? argv[1] : "",7);
+    strncpy((p->L).cdd.Comp,argv[2] ? argv[2] : "",5);
+    strncpy((p->L).cdd.Ano,argv[3] ? argv[3] : "",4);
+    strncpy((p->L).cdd.Vol,argv[4] ? argv[4] : "",5);
+    strncpy((p->L).cdd.Exe,argv[5] ? argv[5] : "",4);
+    strncpy((p->L).ISBN,argv[6] ? argv[6] : "", 19);
+    strncpy((p->L).Nome,argv[7] ? argv[7] : "",50);
+    strncpy((p->L).AutorP,argv[8] ? argv[8] : "NULL",30);
+	strncpy((p->L).Autor2,argv[9] ? argv[9] : "NULL",30);
+	strncpy((p->L).Autor3,argv[10] ? argv[10] : "NULL",30);
+	strncpy((p->L).Autor4,argv[11] ? argv[11] : "NULL",30);
+    strncpy((p->L).Edicao,argv[12] ? argv[12] : "",3);
+    strncpy((p->L).Editora,argv[13] ? argv[13] : "NULL",30);
+	strcpy(p->L.FormaA, argv[14] ? argv[14] : "");
+    strcpy(p->L.ExemplarP, argv[15] ? argv[15] : "");
+	return 0;
+}
+
 static int Dados_Usuarios(void *DU, int argc, char **argv, char **azColName){
     Usuarios *p=(Usuarios *) DU;
     strncpy(p->Nome, argv[0] ? argv[0] : "NULL", 50);
@@ -1482,7 +2066,7 @@ static int Dados_Usuarios(void *DU, int argc, char **argv, char **azColName){
 
 static int Reservas_Funcao(void *Dados, int argc, char **argv, char **azColName){
     Reservas *p=(Reservas *) Dados;
-	strcpy(p->NumCha[p->n_col++], argv[0] ? argv[0] : "NULL");
+	strcpy(p->NumCha[p->n_col], argv[0] ? argv[0] : "NULL");
     strcpy(p->Nome[p->n_col++], argv[1] ? argv[1] : "NULL");
     return 0;
 }
@@ -1492,7 +2076,7 @@ static int Atraso_Funcao(void *Dados, int argc, char **argv, char **azColName){
 	strcpy(p->NumCha[p->n_col], argv[0] ? argv[0] : "NULL");
     strcpy(p->nome[p->n_col], argv[1] ? argv[1] : "NULL");
     strcpy(p->DataEmprestimo[p->n_col], argv[2] ? argv[2] : "NULL");
-    sscanf(argv[3] ? argv[3] : "0", "%i", &p->DiasAtraso[p->n_col++]);
+    sscanf(argv[3], "%i", &p->DiasAtraso[p->n_col++]);
     return 0;
 }
 
@@ -1508,7 +2092,7 @@ static int Nomes_dos_Livros(void *pNomes, int argc, char **argv, char **azColNam
 	itens = (Nomes_Livros *) pNomes;
 	strncpy(itens->Nomes[itens->n_col], argv[0] ? argv[0] : "NULL", 100);
 	strncpy(itens->NumCha[itens->n_col], argv[1] ? argv[1] : "NULL", 30);
-	strncpy(itens->Exemplar[itens->n_col], argv[2] ? argv[2] : "NULL", 3);
+	strncpy(itens->Exemplar[itens->n_col], argv[2] ? argv[2] : "NULL", 4);
 	strncpy(itens->Status[itens->n_col++], argv[3] ? argv[3] : "NULL", 10);
 	return 0;
 }
@@ -1543,6 +2127,13 @@ static int PegarString(void *String, int argc, char **argv, char **azColName){
 	char *S;
 	S=(char *) String;
 	strncpy(S, argv[0], 10);
+	return 0;
+}
+
+static int NomeEscola(void *String, int argc, char **argv, char **azColName){
+	char *S;
+	S=(char *) String;
+	strncpy(S, argv[0], 59);
 	return 0;
 }
 

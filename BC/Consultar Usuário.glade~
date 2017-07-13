@@ -140,6 +140,7 @@
                 <property name="image">image2</property>
                 <property name="always_show_image">True</property>
                 <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Consultar_Usuario" swapped="no"/>
+                <signal name="destroy" handler="gtk_widget_destroy" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">False</property>

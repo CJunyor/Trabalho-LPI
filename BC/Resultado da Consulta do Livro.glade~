@@ -167,7 +167,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">center</property>
-                    <property name="margin_right">100</property>
+                    <property name="margin_right">300</property>
                     <property name="margin_top">18</property>
                     <property name="spacing">12</property>
                     <child>
@@ -206,7 +206,7 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">center</property>
-                    <property name="margin_right">200</property>
+                    <property name="margin_right">400</property>
                     <property name="margin_top">18</property>
                     <property name="orientation">vertical</property>
                     <property name="spacing">12</property>
@@ -314,7 +314,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkButton">
+                          <object class="GtkButton" id="Atualizar_Livro_Button">
                             <property name="label" translatable="yes">Próximo</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -322,6 +322,7 @@
                             <property name="image">image1</property>
                             <property name="image_position">right</property>
                             <property name="always_show_image">True</property>
+                            <signal name="clicked" handler="on_Atualizar_Livro_Button_clicked" object="Numero_Chamada_Resultado_Entry" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>

@@ -506,8 +506,9 @@
                   <item translatable="yes">Não</item>
                 </items>
                 <child internal-child="entry">
-                  <object class="GtkEntry">
+                  <object class="GtkEntry" id="Atualizar_CBT_Entry">
                     <property name="can_focus">False</property>
+                    <property name="editable">False</property>
                     <property name="width_chars">5</property>
                     <property name="text" translatable="yes">Sim</property>
                   </object>
@@ -629,8 +630,9 @@
                   <item translatable="yes">Doação</item>
                 </items>
                 <child internal-child="entry">
-                  <object class="GtkEntry">
+                  <object class="GtkEntry" id="Forma_Aquisicao_CBT_Entry">
                     <property name="can_focus">False</property>
+                    <property name="editable">False</property>
                     <property name="width_chars">8</property>
                     <property name="text" translatable="yes">Compra</property>
                   </object>

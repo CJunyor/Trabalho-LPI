@@ -35,6 +35,7 @@
   <object class="GtkWindow" id="Janela_Cadastro_Periodico">
     <property name="can_focus">False</property>
     <property name="window_position">center</property>
+    <signal name="destroy" handler="gtk_widget_destroy" swapped="no"/>
     <child>
       <object class="GtkBox">
         <property name="visible">True</property>

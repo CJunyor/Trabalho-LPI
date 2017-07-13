@@ -24,8 +24,8 @@ typedef struct {
 }CDD;
 
 typedef struct {
-    char ISBN[14];
-    char Nome[51];
+    char ISBN[20];
+    char Nome[100];
     char AutorP[31];
     char Autor2[31];
 	char Autor3[31];
@@ -44,15 +44,15 @@ typedef struct {
 }Livro;
 
 typedef struct{
-    char ISSN[9];
-    char Nome[51];
-    char Titulo[51];
+    char ISSN[20];
+    char Nome[100];
+    char Titulo[100];
 	char Editora[31];
     char Vol[4];
     char Num[4];
 	char Ano[5];
     data DataPul;
-    char NumCha[8];
+    char NumCha[20];
     char status[10];// Emprestado, Disponivel e Reservado
     Local Localizacao;
     int NumC;
@@ -74,7 +74,7 @@ typedef struct {
 	int n_col;
 	char Nomes[50][101];
 	char NumCha[50][31];
-	char Exemplar[50][4];
+	char Exemplar[50][5];
 	char Status[50][11];
 }Nomes_Livros;
 
@@ -99,12 +99,12 @@ typedef struct {
     int DiasAtraso[50];
     char nome[50][100];
     char DataEmprestimo[50][12];
-	char NumCha[50][20];
+	char NumCha[50][40];
 }Atraso;
 
 typedef struct {
     int n_col;
-	char NumCha[50][20];
+	char NumCha[50][40];
     char Nome[50][100];
 }Reservas;
 
@@ -160,6 +160,10 @@ static int Atraso_Funcao(void *, int , char **, char **);
 
 static int Reservas_Funcao(void *, int , char **, char **);
 
+static int NomeEscola(void *, int , char **, char **);
+
+static int Atualizar_Funcao(void *, int , char **, char **);
+
 //GTK
 
 void Login(GtkWidget *, GtkWidget *[]);
@@ -197,3 +201,11 @@ void on_Usuario_Resultado_Button_clicked(GtkWidget *, GtkWidget *);
 void on_Devolucao_Menu_Usuario_Button_clicked(GtkWidget *, GtkWidget *[]);
 
 void on_Baixa_Reserva_Menu_Usuario_Button_clicked(GtkWidget *, GtkWidget *[]);
+
+void Renovar_Emprestimo_Menu_Usuario_Button(GtkWidget *, GtkWidget *[]);
+
+void on_Confirmar_Renovar_Emprestimo_Button_clicked(GtkWidget *, GtkWidget *[]);
+
+void on_Exclusao_Livro_Button_clicked(GtkWidget *, GtkWidget *[]);
+
+void on_Confirmar_Atualizacao_Livro_Button_clicked(GtkWidget *, GtkWidget *[]);

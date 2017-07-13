@@ -13,10 +13,10 @@
       <!-- column-name Dias -->
       <column type="gint"/>
       <!-- column-name Multa -->
-      <column type="gchararray"/>
+      <column type="gfloat"/>
       <!-- column-name NumChamada2 -->
       <column type="gchararray"/>
-      <!-- column-name Titulos_Resevados -->
+      <!-- column-name Reservados -->
       <column type="gchararray"/>
     </columns>
   </object>
@@ -98,6 +98,8 @@
                     <property name="can_focus">False</property>
                     <property name="margin_left">36</property>
                     <property name="margin_right">20</property>
+                    <property name="margin_top">18</property>
+                    <property name="margin_bottom">18</property>
                     <property name="spacing">12</property>
                     <child>
                       <object class="GtkLabel">
@@ -115,8 +117,6 @@
                       <object class="GtkEntry" id="Escola_Menu_Usuario_Entry">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
-                        <property name="margin_top">18</property>
-                        <property name="margin_bottom">18</property>
                         <property name="editable">False</property>
                         <property name="width_chars">60</property>
                       </object>
@@ -533,7 +533,6 @@
                       <object class="GtkTreeViewColumn">
                         <property name="resizable">True</property>
                         <property name="title" translatable="yes">Numero de Chamada</property>
-                        <property name="clickable">True</property>
                         <property name="reorderable">True</property>
                         <child>
                           <object class="GtkCellRendererText">
@@ -866,7 +865,7 @@
                     <property name="halign">end</property>
                     <property name="image">image5</property>
                     <property name="always_show_image">True</property>
-                    <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Resultado_Consulta_Acervo" swapped="no"/>
+                    <signal name="clicked" handler="on_gtk_fechar_sub_win" object="Janela_Menu_Usuario" swapped="no"/>
                   </object>
                   <packing>
                     <property name="expand">False</property>

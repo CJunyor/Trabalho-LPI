@@ -314,7 +314,7 @@
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkButton">
+                          <object class="GtkButton" id="Atualizar_Livro_Button">
                             <property name="label" translatable="yes">Próximo</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -322,6 +322,7 @@
                             <property name="image">image1</property>
                             <property name="image_position">right</property>
                             <property name="always_show_image">True</property>
+                            <signal name="clicked" handler="on_Atualizar_Livro_Button_clicked" object="Numero_Chamada_Resultado_Entry" swapped="no"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
