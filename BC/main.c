@@ -45,7 +45,7 @@ void Login(GtkWidget *Button, GtkWidget *Widgets_Main[]){
 	gchar login[20], senha[20];
 	strcpy(login, gtk_entry_get_text(GTK_ENTRY(Widgets_Main[1])));
 	strcpy(senha, gtk_entry_get_text(GTK_ENTRY(Widgets_Main[2])));
-	if(!strcmp(login, "")&& !strcmp(senha, "")){
+	if(!strcmp(login, "Teste")&& !strcmp(senha, "123456")){
 		gtk_label_set_text(GTK_LABEL(Widgets_Main[4]), "");
 		builder = gtk_builder_new();
 		gtk_builder_add_from_file (builder, "Menu.glade", NULL);
@@ -491,7 +491,7 @@ G_MODULE_EXPORT void on_Buscar_Livro_Button_clicked(GtkWidget *Button, GtkBox *b
 			//return(0);
 	    }
 		list=list->next;
-	    sprintf(sql,"SELECT Nome, NumChamada, ExemplarPrateleira FROM Livros WHERE AutorPrincipal LIKE '%%%s%%';", gtk_entry_get_text(GTK_ENTRY(list->data)));
+	    sprintf(sql,"SELECT Nome, NumChamada, ExemplarPrateleira, Status FROM Livros WHERE AutorPrincipal LIKE '%%%s%%';", gtk_entry_get_text(GTK_ENTRY(list->data)));
 	    p=(Nomes_Livros *)malloc(sizeof(Nomes_Livros));
 	    p->n_col=0;
 	    rc = sqlite3_exec(db, sql, Nomes_dos_Livros, (void *) p, &zErrMsg);
@@ -617,9 +617,9 @@ G_MODULE_EXPORT void on_Buscar_Periodico_Button_clicked(GtkWidget *Button, GtkBo
 									0, p->Nomes[i],
 									1, p->NumCha[i],
 									2, p->Secao[i],
-									3, p->Estante[i],
-									4, p->Prateleira[i],
-									5, p->Status[i],
+									3, p->Status[i],
+									4, p->Estante[i],
+									5, p->Prateleira[i],
 									-1);
 		    }
 	    }
