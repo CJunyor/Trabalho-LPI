@@ -133,14 +133,14 @@ void on_Proximo_Escolha_Cadastro_Button_clicked(GtkWidget *Button, GtkWidget *Te
 		
 		
 		g_signal_connect(Widgets_Cadastro[0], "destroy", G_CALLBACK (on_gtk_fechar_sub_win), Widgets_Cadastro[0]);
-		g_signal_connect(Widgets_Cadastro[17], "clicked", G_CALLBACK (on_Cadastro_Livro_Button_clicked), Widgets_Cadastro[17]);
+		g_signal_connect(Widgets_Cadastro[17], "clicked", G_CALLBACK (on_Cadastro_Livro_Button_clicked), Widgets_Cadastro);
 		gtk_builder_connect_signals(builder, NULL);
   
 		g_object_unref(builder);
 	  
 		gtk_widget_show_all(Widgets_Cadastro[0]);
 	}
-	else if(!strcmp(escolha, "Periódico")){
+	else /*if(!strcmp(escolha, "Periódico"))*/{
 		GtkBuilder *builder;
 		
 		builder = gtk_builder_new();
@@ -166,7 +166,7 @@ void on_Proximo_Escolha_Cadastro_Button_clicked(GtkWidget *Button, GtkWidget *Te
 		Widgets_Cadastro[17] = GTK_WIDGET(gtk_builder_get_object(builder, "Observacao_Cadastro_Periodico_Entry"));
 		
 		g_signal_connect(Widgets_Cadastro[0], "destroy", G_CALLBACK (on_gtk_fechar_sub_win), Widgets_Cadastro[0]);
-		g_signal_connect(Widgets_Cadastro[16], "clicked", G_CALLBACK (on_Cadastro_Periodico_Button_clicked), Widgets_Cadastro[16]);
+		g_signal_connect(Widgets_Cadastro[16], "clicked", G_CALLBACK (on_Cadastro_Periodico_Button_clicked), Widgets_Cadastro);
 		gtk_builder_connect_signals(builder, NULL);
   
 		g_object_unref(builder);
@@ -1997,27 +1997,7 @@ void on_Sair_Button_clicked(GtkWidget *Button, GtkWidget *widgets[]){
 
 }
 
-G_MODULE_EXPORT void on_toggled (GtkCellRendererToggle *toggle, gchar *str_path, GtkListStore *Lista){
-	gboolean boolean;
-	GtkTreeIter iter;
-	GtkTreePath *path = gtk_tree_path_new_from_string (str_path);
 
-	gtk_tree_model_get_iter (GTK_TREE_MODEL (Lista), &iter, path);
-	gtk_tree_model_get(GTK_TREE_MODEL(Lista), &iter, 4, &boolean, -1);
-	gtk_list_store_set (Lista, &iter, 4, !boolean, -1);
-	gtk_tree_path_free (path);
-}
-
-G_MODULE_EXPORT void on_toggled_periodico (GtkCellRendererToggle *toggle, gchar *str_path, GtkListStore *Lista){
-	gboolean boolean;
-	GtkTreeIter iter;
-	GtkTreePath *path = gtk_tree_path_new_from_string (str_path);
-
-	gtk_tree_model_get_iter (GTK_TREE_MODEL (Lista), &iter, path);
-	gtk_tree_model_get(GTK_TREE_MODEL(Lista), &iter, 6, &boolean, -1);
-	gtk_list_store_set (Lista, &iter, 6, !boolean, -1);
-	gtk_tree_path_free (path);
-}
 G_MODULE_EXPORT void on_Data_Button_clicked(GtkWidget *Button, GtkWidget *Box_Calendario){
 	gtk_widget_show(Box_Calendario);
 }
@@ -2093,7 +2073,7 @@ static int Nomes_dos_Livros(void *pNomes, int argc, char **argv, char **azColNam
 	strncpy(itens->Nomes[itens->n_col], argv[0] ? argv[0] : "NULL", 100);
 	strncpy(itens->NumCha[itens->n_col], argv[1] ? argv[1] : "NULL", 30);
 	strncpy(itens->Exemplar[itens->n_col], argv[2] ? argv[2] : "NULL", 4);
-	strncpy(itens->Status[itens->n_col++], argv[3] ? argv[3] : "NULL", 10);
+	strncpy(itens->Status[itens->n_col++], argv[3] ? argv[3] : "NULL", 19);
 	return 0;
 }
 

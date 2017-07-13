@@ -75,7 +75,7 @@ typedef struct {
 	char Nomes[50][101];
 	char NumCha[50][31];
 	char Exemplar[50][5];
-	char Status[50][11];
+	char Status[50][20];
 }Nomes_Livros;
 
 typedef struct {
